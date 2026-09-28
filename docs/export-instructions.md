@@ -1,68 +1,52 @@
 # Step-by-Step Instructions: Exporting Your GEDCOM Files
 
-Follow these step-by-step guides to download your family tree from both **Ancestry** and **FamilySearch**. Once you have both `.ged` files, place them in the project folder (or in a dedicated `data/` folder), and I will run a comparative analysis to see which platform provides richer data (occupations, notes, dates, and life events).
+Follow these step-by-step guides to get your family tree data into our website.
 
 ---
 
-## Part 1: How to Download Your GEDCOM from Ancestry.com (Quickest — ~2 mins)
+## The Primary & Recommended Path: Ancestry.com (~10 seconds to 2 mins)
 
-Ancestry makes exporting your tree very straightforward via the web browser:
+Everyone in the class has access to a free Ancestry account. Here is the fast two-step workflow:
 
-1. **Log in** to your account at [ancestry.com](https://www.ancestry.com).
-2. In the top navigation bar, click on **Trees** and select the tree you want to export.
-3. At the top-left of your tree (next to the tree name), click the **dropdown arrow** and select **Tree Settings** (or find **Tree Settings** in the left sidebar menu).
-4. On the **Tree Info** tab, look at the bottom-right under the section labeled **Manage your tree**.
-5. Click the green button labeled **Export tree**.
-6. Ancestry will package your tree (this usually takes 15–45 seconds). When finished, a green button labeled **Download your GEDCOM file** will appear.
-7. Click the button to save the file.
-8. Rename the file to: `ancestry-export.ged`.
-
----
-
-## Part 2: How to Download Your GEDCOM from FamilySearch
-
-Because FamilySearch is a shared public tree rather than a private one, FamilySearch does not have a direct web-export button on familysearch.org. Instead, FamilySearch partners with free certified desktop tools to allow users to download their ancestral branch.
-
-### Option A: Using RootsMagic Essentials (Recommended — Free & Easiest)
-RootsMagic is an official FamilySearch certified partner. The free "Essentials" version has a direct FamilySearch downloader:
-
-1. **Download & Install:** Download the free **RootsMagic 10 Essentials** installer from [rootsmagic.com/download](https://www.rootsmagic.com/download/).
-2. **Open RootsMagic** and click **Create a New File** (name it something like `FamilySearchDownload`).
-3. Click on the **File** menu at the top-left, then select **FamilySearch** $\rightarrow$ **FamilySearch Central** (or choose *Import from FamilySearch* during new file setup).
-4. Click **Sign In** and enter your FamilySearch username and password.
-5. In the import wizard:
-   - Select **Import Ancestors**.
-   - Choose **6** or **7** generations.
-   - (Optional) Check the box to include notes and sources.
-6. Click **Import**. RootsMagic will download your ancestors directly from FamilySearch into your local file (takes about 1–3 minutes).
-7. Once finished, click **File** $\rightarrow$ **Export Data** $\rightarrow$ **GEDCOM**.
-8. Keep the default settings (GEDCOM 5.5.1 / UTF-8) and click **Export**.
-9. Save the file as: `familysearch-export.ged`.
+### Step 1: Check for an Existing Tree (Fastest — 10 Seconds!)
+1. Log into your account at [ancestry.com](https://www.ancestry.com).
+2. Click **Trees** in the top navigation bar.
+3. **If you already have a tree listed** (e.g. `Boss Family Tree`):
+   - Click the tree name to open it.
+   - Click the dropdown arrow next to the tree name (top-left) $\rightarrow$ select **Tree Settings**.
+   - On the right side under **Manage your tree**, click the green button: **Export tree**.
+   - When the button turns into **Download your GEDCOM file**, click it to save your file!
+   - You're done! Drop that `.ged` file directly into the website.
 
 ---
 
-### Option B: Using Ancestry's Free FamilySearch Sync (No Extra Software!)
-If your Ancestry account is connected to FamilySearch (common with partner or student accounts), you can pull FamilySearch data directly into Ancestry and export it:
-
-1. Log into **Ancestry.com**.
-2. Click **Trees** $\rightarrow$ **Create & Manage Trees**.
-3. Click **Start a new tree** $\rightarrow$ Select **Import tree from FamilySearch**.
-4. Authorize your FamilySearch account. Ancestry will automatically import 4 to 6 generations from FamilySearch into a brand new Ancestry tree!
-5. Once imported into Ancestry, follow **Part 1** above to export that tree as a `.ged` file.
+### Step 2: What to Do If Your Ancestry Account Has NO Trees (Empty)
+If your account is brand new and has no existing tree:
+1. On Ancestry, click **Trees** $\rightarrow$ **Create & Manage Trees**.
+2. Look below your list of trees and click the link: **`Import tree from FamilySearch`**.
+3. Log in with your FamilySearch credentials to authorize the sync.
+4. Ancestry will automatically import 4 to 6 generations of your ancestors from FamilySearch directly into a new Ancestry tree.
+5. Once the upload finishes (around 2–5 minutes), go to **Tree Settings** $\rightarrow$ **Export tree** $\rightarrow$ **Download your GEDCOM file**.
+6. Every ancestor imported this way will automatically include their official FamilySearch Person ID (`_FSID`)!
 
 ---
 
-## Part 3: Placing the Files for Analysis
+## Alternative: Downloading Directly via RootsMagic (If Not Using Ancestry)
 
-Once you have downloaded the files:
+If someone prefers not to use Ancestry, they can use the free certified desktop tool **RootsMagic 11 Essentials**:
+1. Download & open free **RootsMagic 11 Essentials**.
+2. Click **Download a Tree** $\rightarrow$ select **FamilySearch Family Tree**.
+3. Sign in to FamilySearch and choose **Import Ancestors** (select 6 or 7 generations).
+4. Check **FamilySearch Family Tree Support** so IDs are preserved.
+5. Click **File** $\rightarrow$ **Export Data** $\rightarrow$ **GEDCOM** $\rightarrow$ save file.
 
-1. Create a `data/` folder in this repository if it doesn't already exist.
-2. Place both files in the repository:
-   - `data/ancestry-export.ged`
-   - `data/familysearch-export.ged`
-3. Let me know when you've placed them here, and I will parse and compare:
-   - Total number of individuals and generations.
-   - Count of recorded occupations (`OCCU`).
-   - Count of biographical stories and notes (`NOTE`).
-   - Life events and milestones (`BIRT`, `MARR`, `RESI`, `EVEN`).
-   - Presence of FamilySearch IDs for deep-linking.
+---
+
+## Website Onboarding Flow (What the User Sees on the Site)
+1. **Landing Hero:** A clean, welcoming landing page explaining the site's purpose with a prominent **"Get Started"** button.
+2. **Interactive Onboarding Modal/Drawer:**
+   - Asks: *"Do you have your tree on Ancestry or FamilySearch?"*
+   - Shows quick 3-step screenshots for Ancestry export (Existing tree first, with the "Import from FamilySearch" fallback).
+   - Direct link: *"Open Ancestry Trees in a new tab"*.
+3. **Dropzone:** A sleek drag-and-drop zone (or *"Browse computer"* button) to load the `.ged` file.
+4. **Fallback:** A one-click button: *"No file? Play with a Sample Pioneer Tree"*.
