@@ -15,8 +15,9 @@ Everyone in the class has access to a free Ancestry account. Here is the fast tw
    - Click the tree name to open it.
    - Click the dropdown arrow next to the tree name (top-left) $\rightarrow$ select **Tree Settings**.
    - On the right side under **Manage your tree**, click the green button: **Export tree**.
-   - When the button turns into **Download your GEDCOM file**, click it to save your file!
-   - You're done! Drop that `.ged` file directly into the website.
+   - When the button turns into **Download your GEDCOM file**, click it. Ancestry downloads a `.zip` file (e.g. `Boss, Seth William Family Tree.zip`).
+     ![Ancestry Export GEDCOM screenshot](../public/instructions_ancestry.com.png)
+   - You're done! **You do NOT even need to unzip it**—you can drop that `.zip` file directly into the website!
 
 ---
 

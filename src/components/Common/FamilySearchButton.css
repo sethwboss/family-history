@@ -1,0 +1,71 @@
+.btn-fs-reusable {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+/* Solid Green Button */
+.fs-variant-solid {
+  background-color: var(--color-primary);
+  color: #ffffff !important;
+  border: 1px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.fs-variant-solid:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+  color: #ffffff !important;
+  box-shadow: var(--shadow-md);
+}
+
+/* Outline Green Button */
+.fs-variant-outline {
+  background-color: var(--color-surface);
+  color: var(--color-primary) !important;
+  border: 1.5px solid var(--color-primary);
+}
+
+.fs-variant-outline:hover {
+  background-color: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+  color: var(--color-accent) !important;
+}
+
+/* Subtle Link variant */
+.fs-variant-subtle {
+  background: none;
+  border: none;
+  color: var(--color-primary) !important;
+  padding: 4px 8px;
+}
+
+.fs-variant-subtle:hover {
+  color: var(--color-accent) !important;
+  text-decoration: underline;
+}
+
+/* Sizes */
+.fs-size-sm {
+  padding: 6px 12px;
+  font-size: 0.82rem;
+}
+
+.fs-size-md {
+  padding: 8px 16px;
+  font-size: 0.88rem;
+}
+
+.fs-btn-icon {
+  font-size: 0.95em;
+  display: inline-flex;
+}

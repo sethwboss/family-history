@@ -1,121 +1,256 @@
-.app-container {
+.app-root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-bg);
 }
 
-.app-header {
+/* Notification Bar */
+.notification-bar {
+  padding: 10px 24px;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--color-border);
+  animation: notifySlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+.notification-bar.slide-out {
+  animation: notifySlideRight 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes notifySlideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-100%);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    max-height: 80px;
+    opacity: 1;
+    transform: translateY(0);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@keyframes notifySlideRight {
+  0% {
+    max-height: 80px;
+    opacity: 1;
+    transform: translateX(0);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  60% {
+    opacity: 0;
+    transform: translateX(100%);
+    max-height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom-width: 0;
+  }
+}
+
+.notification-bar.info {
+  background-color: var(--color-accent-subtle);
+  color: var(--color-primary);
+  border-color: var(--color-accent-border);
+}
+
+.notification-bar.success {
+  background-color: #e8f5e9;
+  color: var(--color-primary);
+  border-color: #a5d6a7;
+  font-weight: 600;
+}
+
+.notification-bar.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ffcdd2;
+}
+
+.notification-content {
+  max-width: 1240px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-md) var(--space-xl);
+}
+
+.notification-close {
+  background: none;
+  font-size: 0.95rem;
+  color: inherit;
+  opacity: 0.75;
+  padding: 3px 8px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.notification-close:hover {
+  opacity: 1;
+  background-color: var(--color-accent-subtle);
+  color: var(--color-primary);
+}
+
+/* Active Tree Status Bar (Shown once a tree is loaded) */
+.active-tree-banner {
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
+  padding: 12px 24px;
 }
 
-.brand {
+.active-tree-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.active-tree-left {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 8px;
+  font-size: 0.88rem;
 }
 
-.brand-icon {
-  font-size: 1.5rem;
+.active-dot {
+  width: 9px;
+  height: 9px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--color-primary-light);
 }
 
-.brand-title {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.25rem;
+.active-label {
+  color: var(--color-text-muted);
+}
+
+.active-name {
   color: var(--color-primary);
+  font-size: 0.95rem;
 }
 
-.status-badge {
-  font-size: 0.85rem;
+.active-count {
+  color: var(--color-text-secondary);
+}
+
+.sample-badge {
+  background-color: var(--color-accent-subtle);
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-accent-border);
+}
+
+.active-tree-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-change-tree {
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--color-primary);
-  background-color: var(--color-primary-light);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(35, 92, 43, 0.2);
+  background-color: var(--color-accent-subtle);
+  border: 1px solid var(--color-accent-border);
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  cursor: pointer;
 }
 
-.hero-section {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-2xl) var(--space-md);
+.btn-change-tree:hover {
+  background-color: #e2f0d9;
+  border-color: var(--color-accent);
 }
 
-.welcome-card {
-  max-width: 600px;
-  width: 100%;
+.btn-help-link {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-help-link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* App Main Content */
+.app-main-content {
+  flex-grow: 1;
+}
+
+/* Site Footer */
+.site-footer {
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  box-shadow: var(--shadow-md);
-  text-align: center;
+  border-top: 1px solid var(--color-border);
+  padding: 24px;
+  margin-top: 48px;
 }
 
-.welcome-card h1 {
-  font-size: 2rem;
-  margin-bottom: var(--space-sm);
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-logo {
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--color-primary);
 }
 
-.subtitle {
+.footer-brand p {
+  font-size: 0.78rem;
   color: var(--color-text-secondary);
-  font-size: 1.05rem;
-  margin-bottom: var(--space-xl);
 }
 
-.setup-checklist {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-lg);
-  margin-bottom: var(--space-xl);
-  text-align: left;
-}
-
-.setup-checklist h3 {
-  font-size: 1rem;
-  margin-bottom: var(--space-md);
-  color: var(--color-text-primary);
-}
-
-.setup-checklist ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.setup-checklist li {
+.footer-links {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  font-size: 0.95rem;
-  color: var(--color-text-secondary);
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
 }
 
-.check {
+.footer-link-btn {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footer-link-btn:hover {
+  text-decoration: underline;
   color: var(--color-accent);
-  font-weight: bold;
-}
-
-.ready-note {
-  font-size: 0.95rem;
-  color: var(--color-text-muted);
-}
-
-.app-footer {
-  text-align: center;
-  padding: var(--space-md);
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  border-top: 1px solid var(--color-border);
-  background-color: var(--color-surface);
 }
