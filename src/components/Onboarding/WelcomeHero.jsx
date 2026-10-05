@@ -163,7 +163,7 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                         <strong>Click "Download your GEDCOM file":</strong> Ancestry prepares your file and downloads a <code>.zip</code> file (like <code>Boss Family Tree.zip</code>).
                         <div className="guide-step-img-wrapper">
                           <img
-                            src="/instructions_ancestry.com.png"
+                            src={`${import.meta.env.BASE_URL}instructions_ancestry.com.png`}
                             alt="Ancestry Download your GEDCOM file prompt"
                             className="guide-step-img"
                           />
