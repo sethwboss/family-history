@@ -88,26 +88,33 @@ Because FamilySearch is a shared global tree without a direct 1-click web export
 
 ## 6. Phased Implementation Roadmap (10-Hour Budget)
 
+*Built as a modern Single-Page Application using React 19 + Vite (see [React Build Guide](file:///c:/dev/family-history/docs/react-build-guide.md)).*
+
 ```text
+[ Phase 0: React Initialization & Architecture Setup (Complete) ]
+  ├── Scaffolding React 19 + Vite project structure
+  ├── CSS token design system (variables for colors, fonts, spacing)
+  ├── Setup of component folders (Common, Navigation, Tree) and utils
+  └── Build & dev server verification (npm run dev / npm run build)
+
 [ Phase 1: Foundation & Matchmaker (0 - 4.5 hrs) ]
   ├── Client-side GEDCOM parser + fallback sample dataset (ancestors.json)
-  ├── CSS token design system (variables for colors, fonts, spacing)
-  ├── Quiz UI & Multi-factor matching scoring algorithm
-  └── Result cards with % match badges & direct FamilySearch/Ancestry links
+  ├── Reactive Quiz UI state & multi-factor matching scoring algorithm
+  └── Modular Result cards (<MatchCard />) with % badges & FamilySearch deep links
 
 [ Phase 2: Time-Traveler's Mirror (4.5 - 7.0 hrs) ]
   ├── Calculate milestone age (Event Year - Birth Year)
-  ├── Interactive "At Your Age" timeline comparison component
-  └── Navigation bar linking all tools
+  ├── Interactive "At Your Age" timeline comparison component (<Timeline />)
+  └── Navigation bar tab switcher preserving active family tree state
 
 [ Phase 3: Trade Constellation & Skill Map (7.0 - 9.0 hrs) ]
-  ├── Aggregate OCCU tags into interactive trade clusters
+  ├── Aggregate OCCU tags into interactive trade clusters (<TradeConstellation />)
   ├── Filterable branch explorer
   └── Polish micro-interactions & responsive mobile layouts
 
 [ Phase 4: Final Polish & Deployment (9.0 - 10.0 hrs) ]
   ├── Theming switcher / quick variables check
-  └── Deploy to GitHub Pages or Vercel
+  └── Deploy static Vite bundle to GitHub Pages or Vercel
 ```
 
 ---

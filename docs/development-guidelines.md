@@ -12,7 +12,19 @@ This document outlines the operational and architectural principles for developi
 
 ---
 
-## 2. Core Software Engineering Principles
+## 2. Technology Stack & Lifecycle Commands
+- **Framework:** React 19 Single Page Application (SPA)
+- **Tooling & Bundler:** Vite with `@vitejs/plugin-react`
+- **Styling:** Vanilla CSS with centralized CSS variables / design tokens
+- **Key Commands:**
+  - `npm run dev`: Launch local Vite dev server with Hot Module Replacement (`http://localhost:5173/`)
+  - `npm run build`: Compile and minify production bundle into `dist/`
+  - `npm run preview`: Preview production build locally
+  - `npm run lint`: Run code linter
+
+---
+
+## 3. Core Software Engineering Principles
 
 ### A. Don't Repeat Yourself (DRY)
 - Centralize shared logic, constants, formatters, and utility functions in dedicated utility modules.
@@ -28,7 +40,7 @@ This document outlines the operational and architectural principles for developi
 
 ---
 
-## 3. Directory & File Organization
+## 4. Directory & File Organization
 Keep files organized within dedicated, purpose-driven folders. Avoid placing loose logic or components directly in the root directory:
 
 ```text
@@ -48,7 +60,7 @@ src/
 
 ---
 
-## 4. Theming, Variables, and Reusability
+## 5. Theming, Variables, and Reusability
 
 To ensure the website's theme, colors, typography, and spacing can be easily adapted or overhauled:
 
@@ -80,7 +92,7 @@ To ensure the website's theme, colors, typography, and spacing can be easily ada
 
 ---
 
-## 5. Summary Checklist for Code Changes
+## 6. Summary Checklist for Code Changes
 - [ ] Did I avoid triggering unnecessary terminal commands?
 - [ ] Are styles using CSS variables instead of hardcoded colors/dimensions?
 - [ ] Is this new code placed in its appropriate folder?
