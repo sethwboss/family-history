@@ -103,6 +103,9 @@ npm run dev
 ```
 By default, the application runs at `http://localhost:5173/`. Any edits saved to `.jsx` or `.css` files update immediately in your browser without losing state.
 
+### Testing Policy
+> **Note for AI Coding Assistants:** Do not test features or browser sessions yourself. Once code changes are made, leave all verification and testing for the user to conduct manually in their browser.
+
 ### Production Build
 To create an optimized, minified production bundle in the `dist/` directory:
 ```bash

@@ -12,37 +12,50 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
   const activities = [
     {
       id: 'matchmaker',
-      icon: '✨',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      ),
       title: 'Ancestor Matchmaker',
-      subtitle: 'Personality & Passions',
       description: 'Who do you take after? Select your personal hobbies, craft orientations, and ancestral homelands to reveal which ancestor you resemble most through compatibility scoring.',
-      buttonText: 'Start Matchmaker →'
+      buttonText: 'Open Matchmaker'
     },
     {
       id: 'timemirror',
-      icon: '⏳',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      ),
       title: "Time-Traveler's Mirror",
-      subtitle: 'Milestones at Your Exact Age',
       description: 'Enter your current age (or any milestone year) to see what your ancestors were experiencing, where they lived, and what life was like for them at that exact stage.',
-      buttonText: "Open Time Mirror →"
+      buttonText: 'Open Time Mirror'
     },
     {
       id: 'constellation',
-      icon: '🗺️',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+          <line x1="9" y1="3" x2="9" y2="18" />
+          <line x1="15" y1="6" x2="15" y2="21" />
+        </svg>
+      ),
       title: 'Heritage Constellation',
-      subtitle: 'Trades, Crafts & Origins',
-      description: 'Explore the occupations, artisan trades, and geographic migration pathways that shaped your lineage across generations.',
-      buttonText: 'Explore Constellation →'
+      description: 'Explore the generational branches, historical eras, and geographic homelands that shaped your lineage across generations.',
+      buttonText: 'Open Constellation'
     }
   ]
 
   return (
     <div className="activity-chooser-container">
       <div className="activity-chooser-header">
-        <h2>What would you like to explore first?</h2>
-        <p>
-          Your tree with <strong>{ancestorsCount} ancestors</strong> is loaded. Choose an activity below to begin:
-        </p>
+        <h2>What would you like to explore?</h2>
+        <p>Select an activity below to get started:</p>
       </div>
 
       <div className="activity-cards-grid">
@@ -63,7 +76,6 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
               </div>
 
               <h3 className="activity-title">{act.title}</h3>
-              <span className="activity-subtitle">{act.subtitle}</span>
 
               {/* Collapsible description dropdown */}
               <div className="activity-desc-section">

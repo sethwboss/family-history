@@ -59,7 +59,7 @@ export default function PersonDetailModal({ ancestor, onClose }) {
               <h4>Trades &amp; Professions</h4>
               <div className="tag-group">
                 {ancestor.occupations.map((occ, idx) => (
-                  <Badge key={idx} variant="trade">⚒️ {occ}</Badge>
+                  <Badge key={idx} variant="trade">{occ}</Badge>
                 ))}
               </div>
             </div>
@@ -70,7 +70,7 @@ export default function PersonDetailModal({ ancestor, onClose }) {
               <h4>Interests &amp; Passions</h4>
               <div className="tag-group">
                 {ancestor.interests.map((int, idx) => (
-                  <span key={idx} className="interest-tag">✨ {int}</span>
+                  <span key={idx} className="interest-tag">{int}</span>
                 ))}
               </div>
             </div>
@@ -111,7 +111,6 @@ export default function PersonDetailModal({ ancestor, onClose }) {
                   label="View Memories & Photos ↗"
                   variant="outline"
                   size="md"
-                  icon="🖼️"
                 />
               )}
             </div>

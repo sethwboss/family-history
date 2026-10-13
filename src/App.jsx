@@ -56,7 +56,7 @@ export default function App() {
       const parsed = parseGedcom(content)
       if (parsed.length === 0) {
         setNotification({
-          message: '⚠️ No individual records found in the uploaded file.',
+          message: 'No individual records found in the uploaded file.',
           type: 'error'
         })
         return
@@ -68,7 +68,7 @@ export default function App() {
       setIsSample(false)
       setActiveTab(null)
       setNotification({
-        message: `🎉 Successfully imported ${cleanName} with ${parsed.length} ancestors!`,
+        message: `Successfully imported ${cleanName} with ${parsed.length} ancestors.`,
         type: 'success'
       })
       setTimeout(() => {
@@ -76,7 +76,7 @@ export default function App() {
       }, 50)
     } catch (err) {
       setNotification({
-        message: '❌ Error parsing file. Please make sure it is a valid .zip or .ged export.',
+        message: 'Error parsing file. Please make sure it is a valid .zip or .ged export.',
         type: 'error'
       })
     }
@@ -89,7 +89,7 @@ export default function App() {
     setIsSample(true)
     setActiveTab(null)
     setNotification({
-      message: '🌟 Switched to the 7-Generation demo tree! Choose an activity below to begin.',
+      message: 'Switched to demo tree. Choose an activity below to begin.',
       type: 'info'
     })
     setTimeout(() => {
@@ -150,11 +150,9 @@ export default function App() {
           <div className="active-tree-banner">
             <div className="active-tree-inner">
               <div className="active-tree-left">
-                <span className="active-dot"></span>
-                <span className="active-label">Active Tree:</span>
+                <span className="active-dot" aria-hidden="true"></span>
                 <strong className="active-name">{treeName}</strong>
                 <span className="active-count">({ancestors.length} ancestors)</span>
-                {isSample && <span className="sample-badge">Sample Demo</span>}
               </div>
 
               <div className="active-tree-actions">
@@ -163,28 +161,17 @@ export default function App() {
                   className="btn-change-tree"
                   onClick={handleGoHome}
                 >
-                  📁 Upload Different Tree
-                </button>
-                <button
-                  type="button"
-                  className="btn-help-link"
-                  onClick={() => setIsHelpModalOpen(true)}
-                >
-                  Export Instructions ↗
+                  Change Tree
                 </button>
               </div>
             </div>
           </div>
 
-          {/* When an activity is chosen: Show TabBar navigation with Back to Overview */}
+          {/* Activity Navigation Bar */}
           {activeTab && (
             <TabBar
               activeTab={activeTab}
               onSelectTab={setActiveTab}
-              onBackToOverview={() => {
-                setActiveTab(null)
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }}
             />
           )}
 
@@ -247,11 +234,11 @@ export default function App() {
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <span className="footer-logo">🌿 MemoryLink</span>
-            <p>A BYU-Idaho Computer Science &amp; Family History Technology Project</p>
+            <span className="footer-logo">MemoryLink</span>
+            <p>Connecting you with the lives, traits, and milestones of your ancestors.</p>
           </div>
           <div className="footer-links">
-            <span>Built with React 19 &amp; Vite</span>
+            <span>Private &amp; Secure &bull; All data processed in your browser</span>
             <span>&bull;</span>
             <button
               type="button"

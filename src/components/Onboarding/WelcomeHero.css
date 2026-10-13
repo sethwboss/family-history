@@ -27,11 +27,12 @@
 }
 
 .welcome-header h2 {
-  font-size: 1.85rem;
-  color: var(--color-primary);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
   line-height: 1.2;
   margin-bottom: 8px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .welcome-lead {
@@ -108,51 +109,6 @@
   border-radius: var(--radius-full);
   border: 1px solid var(--color-accent-border);
   font-weight: 600;
-}
-
-/* 2. Sample Tree Box (Matches Screenshot 2) */
-.sample-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--color-surface-alt);
-  padding: 18px 22px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.sample-card-text strong {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--color-text-primary);
-  margin-bottom: 2px;
-}
-
-.sample-card-text p {
-  font-size: 0.82rem;
-  color: var(--color-text-secondary);
-  margin: 0;
-}
-
-.btn-play-sample {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  font-size: 0.88rem;
-  font-weight: 700;
-  padding: 9px 18px;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.btn-play-sample:hover {
-  background-color: var(--color-accent);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
 }
 
 /* 3. Dropdown Guide: "How to get your file" */
@@ -328,6 +284,55 @@
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Sample Tree Box */
+.sample-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-surface-alt);
+  padding: 18px 22px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sample-card-text strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+}
+
+.sample-card-text p {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.btn-play-sample {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-play-sample:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 @media (max-width: 680px) {

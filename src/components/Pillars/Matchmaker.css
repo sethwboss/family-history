@@ -15,9 +15,11 @@
 }
 
 .quiz-header h2 {
-  font-size: 1.5rem;
-  color: var(--color-primary);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
   margin-bottom: 6px;
+  letter-spacing: -0.015em;
 }
 
 .quiz-header p {
@@ -80,6 +82,73 @@
   color: var(--color-text-inverse);
   border-color: var(--color-primary);
   box-shadow: var(--shadow-sm);
+}
+
+.custom-chip {
+  padding-right: 10px;
+}
+
+.chip-remove {
+  font-size: 1.05rem;
+  line-height: 1;
+  margin-left: 4px;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.chip-remove:hover {
+  opacity: 1;
+}
+
+.custom-interest-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  max-width: 480px;
+}
+
+.custom-interest-input {
+  flex: 1;
+  padding: 8px 14px;
+  font-size: 0.84rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.custom-interest-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.btn-add-custom {
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-add-custom:hover:not(:disabled) {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.btn-add-custom:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 /* Quiz Action Row */
@@ -275,15 +344,27 @@
   padding-top: 14px;
 }
 
+.match-origin-text {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+}
+
 .btn-details {
   flex: 1;
-  background-color: var(--color-surface-alt);
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
   font-size: 0.82rem;
   font-weight: 600;
-  padding: 8px 12px;
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
+  white-space: nowrap;
+  line-height: 1.2;
   transition: all var(--transition-fast);
   cursor: pointer;
 }
@@ -291,7 +372,7 @@
 .btn-details:hover {
   background-color: var(--color-accent-subtle);
   border-color: var(--color-accent);
-  color: var(--color-primary);
+  color: var(--color-accent);
 }
 
 @media (max-width: 600px) {

@@ -57,14 +57,10 @@ export default function TimeMirror({ ancestors, onSelectPerson }) {
       {/* Age Control Header without redundant badge */}
       <section className="mirror-hero-card">
         <h2>What Were Your Ancestors Doing at Your Age?</h2>
-        <p>
-          Slide or select an age to synchronize across generations and discover what your relatives experienced when they were in your exact shoes.
-        </p>
 
         <div className="age-selector-box">
           <div className="age-display-row">
             <span className="age-large">Age {selectedAge}</span>
-            <span className="age-subtext">Synchronizing across 7 generations</span>
           </div>
 
           <div className="slider-wrap">
@@ -132,7 +128,6 @@ export default function TimeMirror({ ancestors, onSelectPerson }) {
                   </div>
 
                   <p className="timeline-event-text">
-                    {category === 'milestone' ? '🌟 ' : '🧭 '}
                     {event}
                   </p>
 

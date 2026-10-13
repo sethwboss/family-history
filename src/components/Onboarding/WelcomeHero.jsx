@@ -72,7 +72,6 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
         
         {/* Header */}
         <div className="welcome-header">
-          <div className="header-icon-folder">📁</div>
           <h2>Load Your Family Tree</h2>
           <p className="welcome-lead">
             Upload your Ancestry <strong>.zip</strong> download or direct <strong>.ged</strong> file to explore your personalized matches and timelines.
@@ -81,13 +80,13 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
 
         {errorMsg && (
           <div className="upload-alert error">
-            ⚠️ {errorMsg}
+            {errorMsg}
           </div>
         )}
 
         {isProcessing && (
           <div className="upload-alert info">
-            ⏳ Unpacking your file in the browser...
+            Unpacking and reading your file...
           </div>
         )}
 
@@ -108,7 +107,13 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
           />
 
           <div className="dropzone-content">
-            <span className="drop-icon">📦</span>
+            <span className="drop-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+            </span>
             <h3>Drag &amp; Drop your <code>.zip</code> or <code>.ged</code> file here</h3>
             <p>or click to browse from your computer</p>
           </div>
@@ -204,11 +209,10 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
           )}
         </div>
 
-        {/* 3. Sample Tree Box */}
+        {/* Sample / Test Tree Option */}
         <div className="sample-card">
           <div className="sample-card-text">
             <strong>Don't have your file ready?</strong>
-            <p>Test all features instantly with our pre-loaded 7-generation Boss-Jensen pioneer lineage.</p>
           </div>
           <button
             type="button"
@@ -216,10 +220,9 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
             onClick={onLoadSample}
             id="play-sample-tree-btn"
           >
-            🌟 Play with Sample Tree
+            Play with Sample Tree &rarr;
           </button>
         </div>
-
       </div>
     </section>
   )

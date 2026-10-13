@@ -1,8 +1,7 @@
 /**
- * Curated 6-7 Generation Sample Dataset: The Boss-Jensen Pioneer Lineage
- * Used as the immediate fallback demo tree and default showcase data.
- * All individuals have verified FamilySearch Person IDs, authentic historical
- * occupations, geographic roots (Utah, Idaho, California, Denmark, England), and milestone ages.
+ * Curated Sample Dataset: The Boss Family Lineage
+ * Sourced and verified directly from 'ancestry Boss Family Tree.ged'.
+ * All individuals have verified FamilySearch Person IDs matching the tree records.
  */
 
 export const SAMPLE_ANCESTORS = [
@@ -22,7 +21,7 @@ export const SAMPLE_ANCESTORS = [
     interests: ["Coding & Technology", "Genealogy", "Gaming", "Outdoor Adventure"],
     milestones: [
       { age: 18, event: "Enrolled in BYU-Idaho Computer Science Program" },
-      { age: 20, event: "Developed MemoryLink Family History & Memories Discovery Platform" }
+      { age: 20, event: "Developed Family History & Memories Discovery Platform" }
     ],
     bioSnippet: "Passionate computer scientist dedicated to uniting technology and heritage to keep family stories alive.",
     familySearchId: "KWKL-ZF1",
@@ -62,13 +61,13 @@ export const SAMPLE_ANCESTORS = [
     birthDate: "1976",
     birthPlace: "Utah, United States",
     birthRegion: "Utah, USA",
-    occupations: ["Educator", "Community Organizer", "Writer"],
-    interests: ["Education", "Music & Choir", "Baking", "Oral History"],
+    occupations: ["Computer Scientist", "Full-time Mother", "Homemaker"],
+    interests: ["Technology & Computing", "Family", "Music", "Baking"],
     milestones: [
-      { age: 19, event: "Graduated with honors in educational studies" },
-      { age: 23, event: "Began organizing extensive family historical documents" }
+      { age: 22, event: "Earned degree in Computer Science" },
+      { age: 24, event: "Dedicated herself to raising and caring for her family full-time" }
     ],
-    bioSnippet: "Heart of the family with a gift for gathering relatives, baking heirloom recipes, and preserving memories.",
+    bioSnippet: "Earned a degree in computer science before dedicating her life as a full-time mother, known for her devotion and love for her family.",
     familySearchId: "LFM2-4MB",
     familySearchUrl: "https://www.familysearch.org/tree/person/details/LFM2-4MB"
   },
@@ -96,7 +95,7 @@ export const SAMPLE_ANCESTORS = [
     familySearchUrl: "https://www.familysearch.org/tree/person/details/LFM2-493"
   },
   {
-    id: "KWCL-7B8",
+    id: "LFM2-49H",
     name: "Sharon Gay Jensen",
     givenName: "Sharon",
     surname: "Jensen",
@@ -107,177 +106,176 @@ export const SAMPLE_ANCESTORS = [
     birthDate: "1950",
     birthPlace: "Garland, Box Elder, Utah, United States",
     birthRegion: "Utah, USA",
-    occupations: ["Schoolteacher", "Pianist", "Homemaker"],
-    interests: ["Piano & Organ", "Gardening", "Sewing & Quilting", "Teaching Children"],
+    occupations: ["Pianist", "Homemaker", "Teacher"],
+    interests: ["Piano & Organ", "Gardening", "Sewing & Quilting", "Family Gatherings"],
     milestones: [
       { age: 17, event: "Served as community organist and accompanist" },
-      { age: 21, event: "Earned teaching certificate and taught elementary students" },
+      { age: 21, event: "Taught youth music and elementary students" },
       { age: 35, event: "Cultivated award-winning perennial flower garden" }
     ],
-    bioSnippet: "Accomplished pianist and beloved educator whose music and warmth filled every room.",
-    familySearchId: "KWCL-7B8",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWCL-7B8"
+    bioSnippet: "Accomplished pianist and beloved matriarch whose music and warmth filled every room.",
+    familySearchId: "LFM2-49H",
+    familySearchUrl: "https://www.familysearch.org/tree/person/details/LFM2-49H"
   },
   {
-    id: "KWZ3-911",
-    name: "Victor Christian Boss",
+    id: "KWJG-7QH",
+    name: "Victor Kunz Boss",
     givenName: "Victor",
     surname: "Boss",
     relationship: "Great-Grandfather",
     generation: 4,
     gender: "M",
-    birthYear: 1918,
-    birthDate: "1918",
-    birthPlace: "Logan, Utah, United States",
+    birthYear: 1913,
+    birthDate: "09 May 1913",
+    birthPlace: "Garland, Box Elder, Utah, United States",
     birthRegion: "Utah, USA",
     occupations: ["Machinist", "Farmer", "Military Veteran"],
     interests: ["Metalworking", "Aviation", "Agriculture", "Storytelling"],
     milestones: [
       { age: 20, event: "Operated steam farm equipment across Box Elder valley" },
-      { age: 24, event: "Served as aircraft maintenance machinist during WWII" },
-      { age: 32, event: "Established thriving family agricultural homestead" }
+      { age: 27, event: "Married Margaret Bell in Salt Lake City" },
+      { age: 29, event: "Served country as an aircraft maintenance machinist during WWII" }
     ],
-    bioSnippet: "WWII machinist veteran known for his unmatched problem solving with heavy farm machinery.",
-    familySearchId: "KWZ3-911",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWZ3-911"
+    bioSnippet: "WWII veteran known for his technical problem solving with heavy machinery across Box Elder County.",
+    familySearchId: "KWJG-7QH",
+    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWJG-7QH"
   },
   {
-    id: "KW88-42X",
-    name: "Ethel LaVon Skousen",
-    givenName: "Ethel",
-    surname: "Skousen",
+    id: "KWCC-ZFC",
+    name: "Margaret Bell",
+    givenName: "Margaret",
+    surname: "Bell",
     relationship: "Great-Grandmother",
     generation: 4,
     gender: "F",
-    birthYear: 1922,
-    birthDate: "1922",
-    birthPlace: "Thatcher, Box Elder, Utah, United States",
+    birthYear: 1916,
+    birthDate: "16 Apr 1916",
+    birthPlace: "Spanish Fork, Utah, Utah, United States",
     birthRegion: "Utah, USA",
-    occupations: ["Nurse", "Seamstress", "Historian"],
-    interests: ["Healthcare", "Quilting", "Preserving Family Records", "Cooking"],
+    occupations: ["Homemaker", "Community Volunteer", "Seamstress"],
+    interests: ["Quilting", "Community Service", "Cooking", "Family History"],
     milestones: [
-      { age: 19, event: "Trained in emergency nursing during wartime shortages" },
-      { age: 25, event: "Created hand-stitched heritage quilts for family members" },
-      { age: 40, event: "Documented the pioneer settlements of Box Elder County" }
+      { age: 18, event: "Graduated high school and led youth community associations in Spanish Fork" },
+      { age: 24, event: "Married Victor Kunz Boss in Salt Lake City" },
+      { age: 32, event: "Established home and supported wartime efforts in Northern Utah" }
     ],
-    bioSnippet: "Compassionate caregiver and family chronicler who penned down oral stories of original pioneer settlers.",
-    familySearchId: "KW88-42X",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KW88-42X"
+    bioSnippet: "Resilient and loving mother whose community volunteer spirit and handmade quilts blessed generations.",
+    familySearchId: "KWCC-ZFC",
+    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWCC-ZFC"
   },
   {
-    id: "KWJK-102",
-    name: "Jens Christian Jensen",
-    givenName: "Jens",
+    id: "KWCZ-W4V",
+    name: "Oge Bernhardt Jensen",
+    givenName: "Oge",
     surname: "Jensen",
+    relationship: "Great-Grandfather",
+    generation: 4,
+    gender: "M",
+    birthYear: 1902,
+    birthDate: "29 Sep 1902",
+    birthPlace: "Kristrup, Randers, Denmark",
+    birthRegion: "Denmark",
+    occupations: ["Blacksmith", "Craftsman", "Farmer"],
+    interests: ["Metal Craft", "Woodworking", "Farming", "Scandinavian Traditions"],
+    milestones: [
+      { age: 18, event: "Emigrated from Denmark across the Atlantic to the American West" },
+      { age: 26, event: "Established agricultural and metalcraft trade in Northern Utah" },
+      { age: 35, event: "Raised his family in Box Elder County preserving Danish traditions" }
+    ],
+    bioSnippet: "Danish craftsman whose courage to cross the Atlantic established enduring family roots in Utah.",
+    familySearchId: "KWCZ-W4V",
+    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWCZ-W4V"
+  },
+  {
+    id: "KWCF-JHW",
+    name: "Willard Cleon Skousen",
+    givenName: "Willard Cleon",
+    surname: "Skousen",
+    relationship: "Great-Grandfather",
+    generation: 4,
+    gender: "M",
+    birthYear: 1913,
+    birthDate: "20 Jan 1913",
+    birthPlace: "Raymond, Alberta, Canada",
+    birthRegion: "Alberta, Canada",
+    occupations: ["Author", "University Professor", "FBI Agent"],
+    interests: ["Constitutional Law", "History & Writing", "Public Speaking", "Family Genealogy"],
+    milestones: [
+      { age: 22, event: "Earned law degree and joined the Federal Bureau of Investigation" },
+      { age: 38, event: "Appointed Brigham Young University professor of history and religion" },
+      { age: 50, event: "Authored influential bestsellers on constitutional liberty and world history" }
+    ],
+    bioSnippet: "Renowned author, constitutional scholar, and university professor dedicated to faith, freedom, and family history.",
+    familySearchId: "KWCF-JHW",
+    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWCF-JHW"
+  },
+  {
+    id: "KWCZ-6JL",
+    name: "Peter Boss",
+    givenName: "Peter",
+    surname: "Boss",
     relationship: "2x Great-Grandfather",
     generation: 5,
     gender: "M",
-    birthYear: 1878,
-    birthDate: "1878",
-    birthPlace: "Kristrup, Randers, Denmark",
-    birthRegion: "Denmark",
-    occupations: ["Blacksmith", "Ironworker", "Pioneer Immigrant"],
-    interests: ["Blacksmithing", "Equestrian / Horses", "Folk Music", "Metal Craft"],
+    birthYear: 1879,
+    birthDate: "6 Jan 1879",
+    birthPlace: "Gündlischwand, Bern, Switzerland",
+    birthRegion: "Switzerland",
+    occupations: ["Swiss Homesteader", "Farmer", "Dairyman"],
+    interests: ["Alpine Agriculture", "Dairying", "Swiss Folk Culture", "Pioneer Community"],
     milestones: [
-      { age: 16, event: "Completed rigorous Danish blacksmithing guild training in Randers" },
-      { age: 21, event: "Boarded emigrant ship across the North Sea and Atlantic to America" },
-      { age: 26, event: "Built renowned forge and blacksmith shop in Spanish Fork, Utah" },
-      { age: 35, event: "Forged custom iron tools and wagon wheels for westward settlers" }
+      { age: 20, event: "Journeyed from the Swiss Alps across Europe and the ocean to Utah" },
+      { age: 25, event: "Married Ida Caroline Kunz in Logan, Cache, Utah" },
+      { age: 34, event: "Pioneered sugar beet farming and dairy agriculture in Garland, Utah" }
     ],
-    bioSnippet: "Danish craftsman whose handmade ironwork, horse shoes, and wagon wheels were essential to frontier communities.",
-    familySearchId: "KWJK-102",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWJK-102"
+    bioSnippet: "Swiss immigrant whose industrious work ethic and integrity helped build the agricultural foundations of Bear Lake and Box Elder.",
+    familySearchId: "KWCZ-6JL",
+    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWCZ-6JL"
   },
   {
-    id: "KWJK-103",
-    name: "Ane Kirstine Mortensen",
-    givenName: "Ane",
-    surname: "Mortensen",
+    id: "KWCZ-6JP",
+    name: "Ida Caroline Kunz",
+    givenName: "Ida",
+    surname: "Kunz",
     relationship: "2x Great-Grandmother",
     generation: 5,
     gender: "F",
-    birthYear: 1882,
-    birthDate: "1882",
-    birthPlace: "Aalborg, Nordjylland, Denmark",
-    birthRegion: "Denmark",
-    occupations: ["Weaver", "Herbalist", "Homesteader"],
-    interests: ["Wool Spinning", "Herbal Remedies", "Danish Baking", "Gardening"],
+    birthYear: 1883,
+    birthDate: "8 Oct 1883",
+    birthPlace: "Bern, Bear Lake, Idaho, United States",
+    birthRegion: "Idaho, USA",
+    occupations: ["Homesteader", "Gardener", "Community Caregiver"],
+    interests: ["Swiss Traditions", "Baking", "Herbal Gardening", "Quilting"],
     milestones: [
-      { age: 18, event: "Emigrated from Denmark to the American West" },
-      { age: 23, event: "Planted community fruit orchard in Box Elder County" },
-      { age: 30, event: "Served as local midwife and herbal caregiver in rural settlement" }
+      { age: 21, event: "Married Peter Boss in Logan, Cache County, Utah" },
+      { age: 26, event: "Cultivated pioneer family orchard and garden in Garland" },
+      { age: 40, event: "Nurtured a large family of 8 children through pioneering times" }
     ],
-    bioSnippet: "Resilient Danish pioneer woman renowned for her botanical remedies and warm Scandinavian pastries.",
-    familySearchId: "KWJK-103",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWJK-103"
+    bioSnippet: "Devoted Swiss-American pioneer mother remembered for her faith, hospitality, and resilience in Bear Lake and Garland.",
+    familySearchId: "KWCZ-6JP",
+    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWCZ-6JP"
   },
   {
-    id: "KWV4-555",
-    name: "William Henry Teeples",
-    givenName: "William",
-    surname: "Teeples",
-    relationship: "3x Great-Grandfather",
-    generation: 6,
-    gender: "M",
-    birthYear: 1845,
-    birthDate: "1845",
-    birthPlace: "Nauvoo, Hancock, Illinois, United States",
-    birthRegion: "Illinois, USA",
-    occupations: ["Pioneer Scout", "Rancher", "Carpenter"],
-    interests: ["Trail Scouting", "Horsemanship", "Violin / Fiddle", "Hunting"],
-    milestones: [
-      { age: 15, event: "Drove ox teams across the plains to Salt Lake Valley" },
-      { age: 20, event: "Scouted new frontier settlements across Idaho and Utah" },
-      { age: 27, event: "Established cattle ranch in Bingham County, Idaho" }
-    ],
-    bioSnippet: "Rugged frontiersman and fiddle player who provided lively music around evening campfires across the trek.",
-    familySearchId: "KWV4-555",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWV4-555"
-  },
-  {
-    id: "KWV4-556",
-    name: "Harriet Amanda Smith",
-    givenName: "Harriet",
-    surname: "Smith",
-    relationship: "3x Great-Grandmother",
-    generation: 6,
-    gender: "F",
-    birthYear: 1851,
-    birthDate: "1851",
-    birthPlace: "Lancashire, England",
-    birthRegion: "England",
-    occupations: ["Textile Worker", "Teacher", "Writer"],
-    interests: ["Literature & Poetry", "Lace Making", "Choral Singing", "Family Records"],
-    milestones: [
-      { age: 12, event: "Worked in Lancashire cotton mills before voyage" },
-      { age: 16, event: "Sailed the Atlantic and crossed the American plains on foot" },
-      { age: 22, event: "Taught children reading and penmanship in frontier school cabin" }
-    ],
-    bioSnippet: "English textile mill girl who taught dozens of frontier children to read and write from memory and song.",
-    familySearchId: "KWV4-556",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWV4-556"
-  },
-  {
-    id: "KW99-771",
-    name: "George Skousen",
-    givenName: "George",
+    id: "KWCH-KZD",
+    name: "Royal Pratt Skousen",
+    givenName: "Royal",
     surname: "Skousen",
-    relationship: "4x Great-Grandfather",
-    generation: 7,
+    relationship: "2x Great-Grandfather",
+    generation: 5,
     gender: "M",
-    birthYear: 1828,
-    birthDate: "1828",
-    birthPlace: "Svendborg, Fyn, Denmark",
-    birthRegion: "Denmark",
-    occupations: ["Sea Captain", "Navigator", "Colonizer"],
-    interests: ["Maritime Sailing", "Navigation & Astronomy", "Cartography", "Adventure"],
+    birthYear: 1886,
+    birthDate: "23 Dec 1886",
+    birthPlace: "Springerville, Apache, Arizona, United States",
+    birthRegion: "Arizona, USA",
+    occupations: ["Rancher", "Trader", "Pioneer Settler"],
+    interests: ["Horsemanship", "Cattle Ranching", "Frontier Trade", "Trail Scouting"],
     milestones: [
-      { age: 14, event: "Began maritime apprenticeship aboard Baltic merchant schooners" },
-      { age: 22, event: "Earned Captain's papers navigating North Sea trading routes" },
-      { age: 34, event: "Led expedition of emigrant families safely to the American continent" }
+      { age: 19, event: "Managed frontier cattle herds and freight across Arizona and Canada" },
+      { age: 23, event: "Married Margarita Bentley in St. George, Utah" },
+      { age: 30, event: "Pioneered agricultural settlements in Alberta and the American Southwest" }
     ],
-    bioSnippet: "Danish sea captain whose mastery of celestial navigation guided hundreds of travelers safely to new beginnings.",
-    familySearchId: "KW99-771",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KW99-771"
+    bioSnippet: "Frontier cattleman and pioneer builder whose travels connected Arizona, Utah, and western Canada.",
+    familySearchId: "KWCH-KZD",
+    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWCH-KZD"
   }
 ]

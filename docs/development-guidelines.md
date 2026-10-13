@@ -4,7 +4,9 @@ This document outlines the operational and architectural principles for developi
 
 ---
 
-## 1. Command Execution & Autonomy Policy
+## 1. Testing Policy & Command Execution
+- **No Self-Testing by AI:** Do NOT attempt to test features or browser pages yourself (e.g., running browser subagents, headless test runners, or simulated click flows).
+- **User Performs Manual Testing:** Once code changes are written and saved, leave all testing to the user to test manually in their browser via the live local dev server.
 - **Minimize Command Execution:** Avoid running shell or terminal commands unless strictly necessary.
 - **AFK / Non-Interactive Friendly:** The developer/user may be away from the keyboard (AFK) and unable to manually approve prompted terminal commands. 
 - **Prefer Direct File Operations:** Prefer reading, creating, and modifying code files directly using standard file tools rather than triggering terminal builds, script executions, or CLI scaffolding commands when alternatives exist.
@@ -93,6 +95,7 @@ To ensure the website's theme, colors, typography, and spacing can be easily ada
 ---
 
 ## 6. Summary Checklist for Code Changes
+- [ ] Did I avoid testing things myself and leave verification for the user to manually test?
 - [ ] Did I avoid triggering unnecessary terminal commands?
 - [ ] Are styles using CSS variables instead of hardcoded colors/dimensions?
 - [ ] Is this new code placed in its appropriate folder?

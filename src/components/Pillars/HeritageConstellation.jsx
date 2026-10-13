@@ -1,33 +1,17 @@
 import React, { useState, useMemo } from 'react'
 import Avatar from '../Common/Avatar'
 import FamilySearchButton from '../Common/FamilySearchButton'
-import Badge from '../Common/Badge'
 import './HeritageConstellation.css'
 
 export default function HeritageConstellation({ ancestors, onSelectPerson }) {
   const [selectedFilter, setSelectedFilter] = useState('ALL')
-  const [filterType, setFilterType] = useState('all') // 'trade', 'region', or 'all'
+  const [filterType, setFilterType] = useState('all') // 'region', 'generation', 'era', or 'all'
 
-  // Extract unique trades
-  const tradeStats = useMemo(() => {
-    const counts = {}
-    ancestors.forEach((p) => {
-      if (p.occupations) {
-        p.occupations.forEach((occ) => {
-          counts[occ] = (counts[occ] || 0) + 1
-        })
-      }
-    })
-    return Object.entries(counts)
-      .map(([trade, count]) => ({ trade, count }))
-      .sort((a, b) => b.count - a.count)
-  }, [ancestors])
-
-  // Extract unique regions
+  // Extract unique regions with ancestor counts
   const regionStats = useMemo(() => {
     const counts = {}
     ancestors.forEach((p) => {
-      const region = p.birthRegion || (p.birthPlace ? p.birthPlace.split(',').pop().trim() : 'Unknown')
+      const region = p.birthRegion || (p.birthPlace ? p.birthPlace.split(',').slice(-2).join(', ').trim() : 'Unknown')
       if (region && region !== 'Unknown') {
         counts[region] = (counts[region] || 0) + 1
       }
@@ -37,20 +21,66 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
       .sort((a, b) => b.count - a.count)
   }, [ancestors])
 
+  // Extract generation stats
+  const generationStats = useMemo(() => {
+    const counts = {}
+    ancestors.forEach((p) => {
+      const gen = p.generation || 1
+      const genLabel = gen <= 2 ? 'Gen 1–2 (Immediate)' : gen === 3 ? 'Gen 3 (Grandparents)' : gen === 4 ? 'Gen 4 (Great-Grandparents)' : `Gen ${gen}+ (Ancestors)`
+      counts[genLabel] = (counts[genLabel] || 0) + 1
+    })
+    return Object.entries(counts).map(([genLabel, count]) => ({ genLabel, count }))
+  }, [ancestors])
+
+  // Extract era stats
+  const eraStats = useMemo(() => {
+    const counts = {
+      '20th Century & Modern (1900+)': 0,
+      'Pioneer Era (1840–1899)': 0,
+      'Early Frontiers (Pre-1840)': 0
+    }
+    ancestors.forEach((p) => {
+      if (p.birthYear) {
+        if (p.birthYear >= 1900) counts['20th Century & Modern (1900+)']++
+        else if (p.birthYear >= 1840) counts['Pioneer Era (1840–1899)']++
+        else counts['Early Frontiers (Pre-1840)']++
+      }
+    })
+    return Object.entries(counts)
+      .filter(([_, count]) => count > 0)
+      .map(([era, count]) => ({ era, count }))
+  }, [ancestors])
+
+  const maxGeneration = useMemo(() => {
+    return Math.max(...ancestors.map((p) => p.generation || 1), 1)
+  }, [ancestors])
+
   // Filtered ancestors
   const filteredAncestors = useMemo(() => {
     if (selectedFilter === 'ALL') return ancestors
 
-    if (filterType === 'trade') {
-      return ancestors.filter(
-        (p) => p.occupations && p.occupations.includes(selectedFilter)
-      )
-    }
-
     if (filterType === 'region') {
       return ancestors.filter((p) => {
-        const region = p.birthRegion || (p.birthPlace ? p.birthPlace.split(',').pop().trim() : '')
-        return region.toLowerCase().includes(selectedFilter.toLowerCase())
+        const text = `${p.birthPlace || ''} ${p.birthRegion || ''}`.toLowerCase()
+        return text.includes(selectedFilter.toLowerCase())
+      })
+    }
+
+    if (filterType === 'generation') {
+      return ancestors.filter((p) => {
+        const gen = p.generation || 1
+        const genLabel = gen <= 2 ? 'Gen 1–2 (Immediate)' : gen === 3 ? 'Gen 3 (Grandparents)' : gen === 4 ? 'Gen 4 (Great-Grandparents)' : `Gen ${gen}+ (Ancestors)`
+        return genLabel === selectedFilter
+      })
+    }
+
+    if (filterType === 'era') {
+      return ancestors.filter((p) => {
+        if (!p.birthYear) return false
+        if (selectedFilter.includes('1900+')) return p.birthYear >= 1900
+        if (selectedFilter.includes('1840–1899')) return p.birthYear >= 1840 && p.birthYear < 1900
+        if (selectedFilter.includes('Pre-1840')) return p.birthYear < 1840
+        return true
       })
     }
 
@@ -59,11 +89,11 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
 
   return (
     <div className="pillar-container constellation-pillar">
-      {/* Overview Intro without redundant badge */}
+      {/* Overview Intro */}
       <section className="constellation-hero-card">
-        <h2>The Trades, Crafts &amp; Roots of Your Lineage</h2>
+        <h2>Generations &amp; Homelands of Your Lineage</h2>
         <p>
-          Explore the skills that sustained your ancestors across generations—from Danish blacksmiths and sea navigators to frontier teachers and builders.
+          Explore the generational branches and migration homelands that shaped your family tree—filter by region, generation, and historical era.
         </p>
 
         <div className="stats-row">
@@ -72,21 +102,22 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
             <span className="stat-label">Ancestors Documented</span>
           </div>
           <div className="stat-box">
-            <span className="stat-number">{tradeStats.length || '12+'}</span>
-            <span className="stat-label">Distinct Trades &amp; Crafts</span>
+            <span className="stat-number">{regionStats.length}</span>
+            <span className="stat-label">Homeland Regions</span>
           </div>
           <div className="stat-box">
-            <span className="stat-number">{regionStats.length || '8+'}</span>
-            <span className="stat-label">Global Homeland Regions</span>
+            <span className="stat-number">{maxGeneration}</span>
+            <span className="stat-label">Generations Spanned</span>
           </div>
         </div>
       </section>
 
       {/* Interactive Filter Hub */}
       <section className="filter-hub">
+        {/* Filter by Region */}
         <div className="filter-block">
           <div className="filter-block-header">
-            <h4>⚒️ Filter by Profession or Craft</h4>
+            <h4>Filter by Homeland &amp; Region</h4>
             {selectedFilter !== 'ALL' && (
               <button 
                 type="button" 
@@ -96,34 +127,9 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
                   setFilterType('all')
                 }}
               >
-                Clear Filter ✕
+                Clear Filter ×
               </button>
             )}
-          </div>
-          <div className="cluster-tags">
-            {tradeStats.map(({ trade, count }) => {
-              const isSelected = selectedFilter === trade
-              return (
-                <button
-                  key={trade}
-                  type="button"
-                  className={`cluster-tag ${isSelected ? 'active' : ''}`}
-                  onClick={() => {
-                    setSelectedFilter(trade)
-                    setFilterType('trade')
-                  }}
-                >
-                  <span className="tag-name">{trade}</span>
-                  <span className="tag-count">{count}</span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
-
-        <div className="filter-block">
-          <div className="filter-block-header">
-            <h4>🗺️ Filter by Geographic Roots</h4>
           </div>
           <div className="cluster-tags">
             {regionStats.map(({ region, count }) => {
@@ -138,7 +144,59 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
                     setFilterType('region')
                   }}
                 >
-                  <span className="tag-name">📍 {region}</span>
+                  <span className="tag-name">{region}</span>
+                  <span className="tag-count">{count}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Filter by Generation */}
+        <div className="filter-block">
+          <div className="filter-block-header">
+            <h4>Filter by Generation</h4>
+          </div>
+          <div className="cluster-tags">
+            {generationStats.map(({ genLabel, count }) => {
+              const isSelected = selectedFilter === genLabel
+              return (
+                <button
+                  key={genLabel}
+                  type="button"
+                  className={`cluster-tag ${isSelected ? 'active' : ''}`}
+                  onClick={() => {
+                    setSelectedFilter(genLabel)
+                    setFilterType('generation')
+                  }}
+                >
+                  <span className="tag-name">{genLabel}</span>
+                  <span className="tag-count">{count}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Filter by Era */}
+        <div className="filter-block">
+          <div className="filter-block-header">
+            <h4>Filter by Historical Era</h4>
+          </div>
+          <div className="cluster-tags">
+            {eraStats.map(({ era, count }) => {
+              const isSelected = selectedFilter === era
+              return (
+                <button
+                  key={era}
+                  type="button"
+                  className={`cluster-tag ${isSelected ? 'active' : ''}`}
+                  onClick={() => {
+                    setSelectedFilter(era)
+                    setFilterType('era')
+                  }}
+                >
+                  <span className="tag-name">{era}</span>
                   <span className="tag-count">{count}</span>
                 </button>
               )
@@ -153,7 +211,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
           <h3>
             {selectedFilter === 'ALL'
               ? 'All Lineage Relatives'
-              : `Ancestors with ${filterType === 'trade' ? 'Trade' : 'Roots'}: "${selectedFilter}"`}
+              : `Ancestors in: "${selectedFilter}"`}
           </h3>
         </div>
 
@@ -167,22 +225,13 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
                   <p className="card-lifespan">
                     {person.birthYear ? `b. ${person.birthYear}` : 'Birth unlisted'}
                     {person.deathYear ? ` – d. ${person.deathYear}` : ''}
+                    {person.relationship && ` • ${person.relationship}`}
                   </p>
                   <p className="card-origin">
-                    📍 {person.birthPlace || person.birthRegion || 'Origin recorded in tree'}
+                    📍 {person.birthPlace || person.birthRegion || 'Origin in family tree'}
                   </p>
                 </div>
               </div>
-
-              {person.occupations && person.occupations.length > 0 && (
-                <div className="card-tags">
-                  {person.occupations.map((occ, oIdx) => (
-                    <Badge key={oIdx} variant="trade">
-                      ⚒️ {occ}
-                    </Badge>
-                  ))}
-                </div>
-              )}
 
               <div className="card-actions-row">
                 <button
@@ -190,13 +239,13 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
                   className="btn-card-inspect"
                   onClick={() => onSelectPerson(person)}
                 >
-                  View Details
+                  View Ancestor Profile
                 </button>
                 <FamilySearchButton
                   url={person.familySearchUrl}
-                  variant="subtle"
+                  variant="outline"
                   size="sm"
-                  label="FS Profile ↗"
+                  label="FamilySearch Record ↗"
                 />
               </div>
             </div>

@@ -234,12 +234,20 @@
 }
 
 .btn-timeline-detail {
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--color-primary);
-  background-color: var(--color-primary-light);
-  padding: 4px 10px;
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-primary);
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
+  white-space: nowrap;
+  line-height: 1.2;
+  cursor: pointer;
   transition: all var(--transition-fast);
 }
 

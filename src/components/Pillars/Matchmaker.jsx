@@ -1,56 +1,23 @@
 import React, { useState, useMemo, useRef } from 'react'
-import { calculateAncestorMatches } from '../../utils/matchingEngine'
+import {
+  calculateAncestorMatches,
+  REGION_DEFINITIONS,
+  ERA_OPTIONS,
+  MILESTONE_OPTIONS,
+  MONTH_OPTIONS
+} from '../../utils/matchingEngine'
 import Avatar from '../Common/Avatar'
 import FamilySearchButton from '../Common/FamilySearchButton'
 import Badge from '../Common/Badge'
 import './Matchmaker.css'
 
 export default function Matchmaker({ ancestors, onSelectPerson }) {
-  // Quiz state: start unselected so user chooses their real passions
-  const [selectedInterests, setSelectedInterests] = useState([])
-  const [selectedCareer, setSelectedCareer] = useState(null)
+  const [selectedMonth, setSelectedMonth] = useState(null)
   const [selectedRegions, setSelectedRegions] = useState([])
+  const [selectedEra, setSelectedEra] = useState(null)
+  const [selectedMilestones, setSelectedMilestones] = useState([])
   const [hasSubmittedQuiz, setHasSubmittedQuiz] = useState(false)
   const resultsRef = useRef(null)
-
-  const interestOptions = [
-    { label: 'Coding & Tech', icon: '💻' },
-    { label: 'Woodworking & Crafts', icon: '🪵' },
-    { label: 'Music & Instruments', icon: '🎻' },
-    { label: 'Gardening & Plants', icon: '🌱' },
-    { label: 'Baking & Cooking', icon: '🍞' },
-    { label: 'Sewing & Quilting', icon: '🧵' },
-    { label: 'Storytelling & Writing', icon: '📖' },
-    { label: 'Outdoor Adventure', icon: '🏕️' },
-    { label: 'Teaching & Mentoring', icon: '🎓' },
-    { label: 'Horses & Animals', icon: '🐎' }
-  ]
-
-  const careerOptions = [
-    { id: 'tech', label: 'Tech & Engineering', icon: '⚙️' },
-    { id: 'trades', label: 'Crafts & Trades', icon: '⚒️' },
-    { id: 'education', label: 'Education & Literature', icon: '📚' },
-    { id: 'agriculture', label: 'Agriculture & Homesteading', icon: '🌾' },
-    { id: 'healthcare', label: 'Healthcare & Nursing', icon: '🩺' },
-    { id: 'arts', label: 'Music & Fine Arts', icon: '🎨' },
-    { id: 'adventure', label: 'Pioneer & Maritime Scout', icon: '⛵' }
-  ]
-
-  const regionOptions = [
-    { id: 'utah', label: 'Utah & Mountain West', icon: '🏔️' },
-    { id: 'denmark', label: 'Denmark & Scandinavia', icon: '🇩🇰' },
-    { id: 'england', label: 'England & Great Britain', icon: '🇬🇧' },
-    { id: 'idaho', label: 'Idaho Frontier', icon: '🌲' },
-    { id: 'california', label: 'California Coast', icon: '🌊' }
-  ]
-
-  const toggleInterest = (interest) => {
-    setSelectedInterests((prev) =>
-      prev.includes(interest)
-        ? prev.filter((i) => i !== interest)
-        : [...prev, interest]
-    )
-  }
 
   const toggleRegion = (regionId) => {
     setSelectedRegions((prev) =>
@@ -60,17 +27,26 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
     )
   }
 
-  // Calculate top matches
+  const toggleMilestone = (milestoneId) => {
+    setSelectedMilestones((prev) =>
+      prev.includes(milestoneId)
+        ? prev.filter((m) => m !== milestoneId)
+        : [...prev, milestoneId]
+    )
+  }
+
+  // Calculate top matches based on authentic GEDCOM attributes
   const matches = useMemo(() => {
     return calculateAncestorMatches(
       {
-        interests: selectedInterests,
-        career: selectedCareer,
-        regions: selectedRegions
+        birthMonth: selectedMonth,
+        regions: selectedRegions,
+        era: selectedEra,
+        milestones: selectedMilestones
       },
       ancestors
     )
-  }, [selectedInterests, selectedCareer, selectedRegions, ancestors])
+  }, [selectedMonth, selectedRegions, selectedEra, selectedMilestones, ancestors])
 
   const topMatches = matches.slice(0, 6)
 
@@ -86,84 +62,116 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
       {/* Quiz Card */}
       <section className="quiz-card">
         <div className="quiz-header">
-          <h2>Select Your Personal Passions &amp; Roots</h2>
+          <h2>Discover Your Heritage Twins &amp; Ancestral Roots</h2>
           <p>
-            Choose what you enjoy doing and where your interests lie. When you're ready, click calculate to reveal which ancestor you resemble most!
+            Match with ancestors across authentic historical records—your birth month, ancestral homelands, generational eras, and life milestones.
           </p>
         </div>
 
         <div className="quiz-grid">
-          {/* Interests */}
+          {/* 1. Birth Month / Birthday Twin */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>1. Your Hobbies &amp; Interests</span>
-              <span className="selection-count">({selectedInterests.length} selected)</span>
+              <span>1. Your Birth Month (Find Your Birthday Twin)</span>
+              {selectedMonth && <span className="selection-count">Selected: {selectedMonth}</span>}
             </label>
             <div className="chips-wrap">
-              {interestOptions.map((opt) => {
-                const isSelected = selectedInterests.includes(opt.label)
+              {MONTH_OPTIONS.map((month) => {
+                const isSelected = selectedMonth === month
+                const shortLabel = month.slice(0, 3)
                 return (
                   <button
-                    key={opt.label}
+                    key={month}
                     type="button"
                     className={`chip ${isSelected ? 'selected' : ''}`}
-                    onClick={() => toggleInterest(opt.label)}
+                    onClick={() => setSelectedMonth(prev => prev === month ? null : month)}
+                    title={`Match ancestors born in ${month}`}
                   >
-                    <span>{opt.icon}</span>
-                    <span>{opt.label}</span>
+                    <span>{shortLabel}</span>
                   </button>
                 )
               })}
             </div>
           </div>
 
-          {/* Career Path */}
+          {/* 2. Geographic Roots & Homelands */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>2. Career / Craft Orientation</span>
+              <span>2. Geographic Roots &amp; Homelands</span>
+              {selectedRegions.length > 0 && (
+                <span className="selection-count">{selectedRegions.length} selected</span>
+              )}
             </label>
             <div className="chips-wrap">
-              {careerOptions.map((opt) => {
-                const isSelected = selectedCareer === opt.id
+              {REGION_DEFINITIONS.map((reg) => {
+                const isSelected = selectedRegions.includes(reg.id)
                 return (
                   <button
-                    key={opt.id}
+                    key={reg.id}
+                    type="button"
+                    className={`chip ${isSelected ? 'selected' : ''}`}
+                    onClick={() => toggleRegion(reg.id)}
+                  >
+                    <span>{reg.label}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* 3. Historical Era / Generation */}
+          <div className="quiz-field">
+            <label className="field-label">
+              <span>3. Historical Era &amp; Lineage</span>
+              {selectedEra && (
+                <span className="selection-count">
+                  {ERA_OPTIONS.find(e => e.id === selectedEra)?.label}
+                </span>
+              )}
+            </label>
+            <div className="chips-wrap">
+              {ERA_OPTIONS.map((era) => {
+                const isSelected = selectedEra === era.id
+                return (
+                  <button
+                    key={era.id}
                     type="button"
                     className={`chip radio-chip ${isSelected ? 'selected' : ''}`}
-                    onClick={() => setSelectedCareer(prev => prev === opt.id ? null : opt.id)}
+                    onClick={() => setSelectedEra(prev => prev === era.id ? null : era.id)}
                   >
-                    <span>{opt.icon}</span>
-                    <span>{opt.label}</span>
+                    <span>{era.label}</span>
                   </button>
                 )
               })}
             </div>
           </div>
 
-          {/* Heritage Origins */}
+          {/* 4. Life Milestones & Journey */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>3. Roots &amp; Dream Destinations</span>
+              <span>4. Life Journey &amp; Milestones</span>
+              {selectedMilestones.length > 0 && (
+                <span className="selection-count">{selectedMilestones.length} selected</span>
+              )}
             </label>
             <div className="chips-wrap">
-              {regionOptions.map((opt) => {
-                const isSelected = selectedRegions.includes(opt.id)
+              {MILESTONE_OPTIONS.map((m) => {
+                const isSelected = selectedMilestones.includes(m.id)
                 return (
                   <button
-                    key={opt.id}
+                    key={m.id}
                     type="button"
                     className={`chip ${isSelected ? 'selected' : ''}`}
-                    onClick={() => toggleRegion(opt.id)}
+                    onClick={() => toggleMilestone(m.id)}
                   >
-                    <span>{opt.icon}</span>
-                    <span>{opt.label}</span>
+                    <span>{m.label}</span>
                   </button>
                 )
               })}
             </div>
           </div>
 
-          {/* Action Row: Don't show matches until button is clicked */}
+          {/* Action Row */}
           <div className="quiz-action-row">
             <button
               type="button"
@@ -171,11 +179,11 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
               onClick={handleCalculate}
               id="calculate-matches-btn"
             >
-              {hasSubmittedQuiz ? '🔄 Update My Ancestor Matches' : '✨ Find My Closest Ancestor Matches'}
+              {hasSubmittedQuiz ? 'Update Matches' : 'Find Matching Ancestors'}
             </button>
             {!hasSubmittedQuiz && (
               <span className="quiz-hint-text">
-                Click to scan all {ancestors.length} ancestors in your tree
+                Scan your tree for shared birthdays, homelands, and generations
               </span>
             )}
           </div>
@@ -188,7 +196,7 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
           <div className="results-header">
             <div>
               <h3>Your Top Ancestor Matches</h3>
-              <p>Ranked by alignment across shared trades, hobbies, and historical origins.</p>
+              <p>Ranked by verified connections in your tree: birth months, ancestral homelands, eras, and longevity.</p>
             </div>
           </div>
 
@@ -200,7 +208,7 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
                   key={person.id || index} 
                   className={`match-card ${isTop ? 'top-match' : ''}`}
                 >
-                  {isTop && <div className="crown-badge">🏆 #1 Closest Match</div>}
+                  {isTop && <div className="crown-badge">Top Match</div>}
 
                   <div className="match-card-top">
                     <Avatar gender={person.gender} size="md" />
@@ -216,16 +224,17 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
                         {person.deathYear ? ` – d. ${person.deathYear}` : ''}
                         {person.relationship && ` • ${person.relationship}`}
                       </p>
+                      {person.birthPlace && (
+                        <p className="match-origin-text">
+                          📍 {person.birthPlace}
+                        </p>
+                      )}
                     </div>
                   </div>
 
-                  {person.bioSnippet && (
-                    <p className="match-bio-preview">"{person.bioSnippet}"</p>
-                  )}
-
                   {/* Match Reasons */}
                   <div className="reasons-list">
-                    <span className="reasons-title">Why you take after them:</span>
+                    <span className="reasons-title">Why you connect with them:</span>
                     {person.matchReasons && person.matchReasons.map((reason, idx) => (
                       <div key={idx} className="reason-item">
                         <span className="reason-check">✓</span>
@@ -241,12 +250,13 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
                       className="btn-details"
                       onClick={() => onSelectPerson(person)}
                     >
-                      📖 Read Story &amp; Timeline
+                      View Ancestor Profile
                     </button>
                     <FamilySearchButton
                       url={person.familySearchUrl}
-                      variant="solid"
+                      variant="outline"
                       size="sm"
+                      label="FamilySearch Record ↗"
                     />
                   </div>
                 </div>

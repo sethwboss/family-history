@@ -198,12 +198,50 @@ function formatEventDescription(type, date) {
   }
 }
 
+export function extractMonth(dateStr) {
+  if (!dateStr) return null
+  const months = [
+    { num: 1, name: 'January', abbr: 'jan' },
+    { num: 2, name: 'February', abbr: 'feb' },
+    { num: 3, name: 'March', abbr: 'mar' },
+    { num: 4, name: 'April', abbr: 'apr' },
+    { num: 5, name: 'May', abbr: 'may' },
+    { num: 6, name: 'June', abbr: 'jun' },
+    { num: 7, name: 'July', abbr: 'jul' },
+    { num: 8, name: 'August', abbr: 'aug' },
+    { num: 9, name: 'September', abbr: 'sep' },
+    { num: 10, name: 'October', abbr: 'oct' },
+    { num: 11, name: 'November', abbr: 'nov' },
+    { num: 12, name: 'December', abbr: 'dec' }
+  ]
+  const lower = dateStr.toLowerCase()
+  for (const m of months) {
+    if (new RegExp(`\\b${m.abbr}\\b|\\b${m.name.toLowerCase()}\\b`).test(lower) || lower.includes(m.abbr)) {
+      return m.name
+    }
+  }
+  const isoMatch = dateStr.match(/^\d{4}-(\d{2})-\d{2}/)
+  if (isoMatch) {
+    const idx = parseInt(isoMatch[1], 10) - 1
+    if (months[idx]) return months[idx].name
+  }
+  return null
+}
+
 function finalizeIndividual(indi) {
   // Infer generation roughly based on birth year if available
   const currentYear = 2026
   if (indi.birthYear) {
     const ageDiff = currentYear - indi.birthYear
     indi.generation = Math.max(1, Math.min(8, Math.round(ageDiff / 28)))
+  }
+
+  // Extract birth month and lifespan
+  indi.birthMonth = extractMonth(indi.birthDate)
+  if (indi.birthYear && indi.deathYear && indi.deathYear >= indi.birthYear) {
+    indi.lifespan = indi.deathYear - indi.birthYear
+  } else {
+    indi.lifespan = null
   }
 
   // Calculate milestone ages: (milestone.year - birthYear)
