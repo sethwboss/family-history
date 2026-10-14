@@ -3,7 +3,6 @@ import {
   calculateAncestorMatches,
   HOMELAND_OPTIONS,
   CALLING_OPTIONS,
-  SPIRIT_OPTIONS,
   MONTH_OPTIONS
 } from '../../utils/matchingEngine'
 import Avatar from '../Common/Avatar'
@@ -15,7 +14,6 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
   const [selectedMonth, setSelectedMonth] = useState(null)
   const [selectedRegions, setSelectedRegions] = useState([])
   const [selectedCallings, setSelectedCallings] = useState([])
-  const [selectedSpirits, setSelectedSpirits] = useState([])
   const [hasSubmittedQuiz, setHasSubmittedQuiz] = useState(false)
   const resultsRef = useRef(null)
 
@@ -35,26 +33,17 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
     )
   }
 
-  const toggleSpirit = (spiritId) => {
-    setSelectedSpirits((prev) =>
-      prev.includes(spiritId)
-        ? prev.filter((s) => s !== spiritId)
-        : [...prev, spiritId]
-    )
-  }
-
   // Calculate top matches based on authentic GEDCOM attributes
   const matches = useMemo(() => {
     return calculateAncestorMatches(
       {
         birthMonth: selectedMonth,
         regions: selectedRegions,
-        callings: selectedCallings,
-        spirits: selectedSpirits
+        callings: selectedCallings
       },
       ancestors
     )
-  }, [selectedMonth, selectedRegions, selectedCallings, selectedSpirits, ancestors])
+  }, [selectedMonth, selectedRegions, selectedCallings, ancestors])
 
   const topMatches = matches.slice(0, 6)
 
@@ -70,17 +59,17 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
       {/* Quiz Card */}
       <section className="quiz-card">
         <div className="quiz-header">
-          <h2>Discover Your Heritage Twins &amp; Ancestral Roots</h2>
+          <h2>Ancestor Matchmaker</h2>
           <p>
-            Tell us about <strong>yourself</strong>—your birth month, where you live or dream of traveling, your favorite skills/passions, and your life journey. We'll cross-reference your traits with verified records in your family tree to find your generational matches!
+            Choose your birth month, location, and interests to find ancestors in your tree who match.
           </p>
         </div>
 
         <div className="quiz-grid">
-          {/* 1. Birth Month / Birthday Twin */}
+          {/* 1. Birth Month */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>1. Your Birth Month (Find Your Birthday Twin)</span>
+              <span>1. Birth Month</span>
               {selectedMonth && <span className="selection-count">Selected: {selectedMonth}</span>}
             </label>
             <div className="chips-wrap">
@@ -105,7 +94,7 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
           {/* 2. Where You Live or Dream of Traveling */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>2. Where You Live or Dream of Traveling (Homeland Roots)</span>
+              <span>2. Location or Region</span>
               {selectedRegions.length > 0 && (
                 <span className="selection-count">{selectedRegions.length} selected</span>
               )}
@@ -130,7 +119,7 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
           {/* 3. Your Calling, Skills & Passions */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>3. Your Calling, Skills &amp; Passions (What You Do or Love)</span>
+              <span>3. Trade or Interests</span>
               {selectedCallings.length > 0 && (
                 <span className="selection-count">{selectedCallings.length} selected</span>
               )}
@@ -152,32 +141,6 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
             </div>
           </div>
 
-          {/* 4. Your Life Spirit & Personal Journey */}
-          <div className="quiz-field">
-            <label className="field-label">
-              <span>4. Your Life Spirit &amp; Journey (Your Personal Values)</span>
-              {selectedSpirits.length > 0 && (
-                <span className="selection-count">{selectedSpirits.length} selected</span>
-              )}
-            </label>
-            <div className="chips-wrap">
-              {SPIRIT_OPTIONS.map((spirit) => {
-                const isSelected = selectedSpirits.includes(spirit.id)
-                return (
-                  <button
-                    key={spirit.id}
-                    type="button"
-                    className={`chip ${isSelected ? 'selected' : ''}`}
-                    onClick={() => toggleSpirit(spirit.id)}
-                    title={spirit.subtitle}
-                  >
-                    <span><strong>{spirit.label}</strong>: {spirit.subtitle}</span>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
           {/* Action Row */}
           <div className="quiz-action-row">
             <button
@@ -186,11 +149,11 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
               onClick={handleCalculate}
               id="calculate-matches-btn"
             >
-              {hasSubmittedQuiz ? 'Update My Matches' : 'Find My Ancestor Matches'}
+              {hasSubmittedQuiz ? 'Update Matches' : 'Find Matches'}
             </button>
             {!hasSubmittedQuiz && (
               <span className="quiz-hint-text">
-                Scan your family tree for shared birth months, homelands, trades, and life journeys
+                Matches are based on shared birth months, places, and trades
               </span>
             )}
           </div>
@@ -202,8 +165,8 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
         <section className="results-section" ref={resultsRef}>
           <div className="results-header">
             <div>
-              <h3>Your Top Ancestor Matches</h3>
-              <p>Ranked by verified connections in your tree: birth months, ancestral homelands, eras, and longevity.</p>
+              <h3>Top Matches</h3>
+              <p>Ranked by shared birth months, regions, and trades in your tree.</p>
             </div>
           </div>
 

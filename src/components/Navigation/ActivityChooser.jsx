@@ -11,6 +11,18 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
 
   const activities = [
     {
+      id: 'timemirror',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      ),
+      title: "Time-Traveler's Mirror",
+      description: 'See what your ancestors were doing and where they lived at your exact age.',
+      buttonText: 'Open Time Mirror'
+    },
+    {
       id: 'matchmaker',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -21,20 +33,8 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
         </svg>
       ),
       title: 'Ancestor Matchmaker',
-      description: 'Who do you take after? Answer a few questions about yourself—your birth month, where you live or travel, your passions, and life journey—to find your heritage twins.',
+      description: 'Find ancestors in your tree who share your birth month, region, or trade.',
       buttonText: 'Open Matchmaker'
-    },
-    {
-      id: 'timemirror',
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <polyline points="12 6 12 12 16 14" />
-        </svg>
-      ),
-      title: "Time-Traveler's Mirror",
-      description: 'Enter your current age (or any milestone year) to see what your ancestors were experiencing, where they lived, and what life was like for them at that exact stage.',
-      buttonText: 'Open Time Mirror'
     },
     {
       id: 'constellation',
@@ -46,7 +46,7 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
         </svg>
       ),
       title: 'Constellation',
-      description: 'Explore the living network of trades, ocean voyages, remarkable longevity, ancestral homelands, and generations across your lineage.',
+      description: 'Filter your family tree by trade, immigration, lifespan, region, and generation.',
       buttonText: 'Open Constellation'
     }
   ]

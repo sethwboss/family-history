@@ -72,11 +72,11 @@ All 3 core pillars run seamlessly on a single page with zero page reloads:
 ```
 [ Active Dataset State ] (sampleAncestors.json OR User's uploaded .ged)
          │
-         ├──► [ Active Tab: "Matchmaker" ]
-         │       └── User Quiz Selections ──► matchEngine() ──► Ranked Match Cards
-         │
          ├──► [ Active Tab: "Time-Traveler's Mirror" ]
          │       └── Current Age Slider (e.g. 21) ──► milestoneHelpers() ──► Age Timeline
+         │
+         ├──► [ Active Tab: "Matchmaker" ]
+         │       └── User Quiz Selections ──► matchEngine() ──► Ranked Match Cards
          │
          └──► [ Active Tab: "Constellation" ]
                  └── Selected Trade / Craft ──► Branch Filter ──► Visual Cluster

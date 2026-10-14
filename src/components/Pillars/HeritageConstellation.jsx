@@ -38,10 +38,10 @@ function getLifespanBracket(person) {
       : null
   )
   if (!span) return null
-  if (span >= 80) return 'Golden Elders (80+ Years)'
-  if (span >= 60) return 'Pioneer Lifetimes (60–79 Years)'
-  if (span >= 40) return 'Mid-Century Lifetimes (40–59 Years)'
-  return 'Departed in Youth (<40 Years)'
+  if (span >= 80) return '80+ Years'
+  if (span >= 60) return '60–79 Years'
+  if (span >= 40) return '40–59 Years'
+  return 'Under 40 Years'
 }
 
 export default function HeritageConstellation({ ancestors, onSelectPerson }) {
@@ -72,8 +72,8 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
       else nativeCount++
     })
     const list = []
-    if (immigrantCount > 0) list.push({ label: 'Crossed Oceans (Immigrants)', count: immigrantCount, key: 'immigrant' })
-    if (nativeCount > 0) list.push({ label: 'Native-Born Settlers', count: nativeCount, key: 'native' })
+    if (immigrantCount > 0) list.push({ label: 'Immigrants', count: immigrantCount, key: 'immigrant' })
+    if (nativeCount > 0) list.push({ label: 'Non-Immigrants', count: nativeCount, key: 'native' })
     return list
   }, [ancestors])
 
@@ -87,10 +87,10 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
       }
     })
     const order = [
-      'Golden Elders (80+ Years)',
-      'Pioneer Lifetimes (60–79 Years)',
-      'Mid-Century Lifetimes (40–59 Years)',
-      'Departed in Youth (<40 Years)'
+      '80+ Years',
+      '60–79 Years',
+      '40–59 Years',
+      'Under 40 Years'
     ]
     return order
       .filter(bracket => counts[bracket] > 0)
@@ -116,7 +116,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
     const counts = {}
     ancestors.forEach((p) => {
       const gen = p.generation || 1
-      const genLabel = gen <= 2 ? 'Gen 1–2 (Immediate)' : gen === 3 ? 'Gen 3 (Grandparents)' : gen === 4 ? 'Gen 4 (Great-Grandparents)' : `Gen ${gen}+ (Ancestors)`
+      const genLabel = gen <= 2 ? 'Gen 1–2' : gen === 3 ? 'Gen 3' : gen === 4 ? 'Gen 4' : `Gen ${gen}+`
       counts[genLabel] = (counts[genLabel] || 0) + 1
     })
     return Object.entries(counts).map(([genLabel, count]) => ({ genLabel, count }))
@@ -125,15 +125,15 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
   // Extract era stats
   const eraStats = useMemo(() => {
     const counts = {
-      '20th Century & Modern (1900+)': 0,
-      'Pioneer Era (1840–1899)': 0,
-      'Early Frontiers (Pre-1840)': 0
+      '1900+': 0,
+      '1840–1899': 0,
+      'Pre-1840': 0
     }
     ancestors.forEach((p) => {
       if (p.birthYear) {
-        if (p.birthYear >= 1900) counts['20th Century & Modern (1900+)']++
-        else if (p.birthYear >= 1840) counts['Pioneer Era (1840–1899)']++
-        else counts['Early Frontiers (Pre-1840)']++
+        if (p.birthYear >= 1900) counts['1900+']++
+        else if (p.birthYear >= 1840) counts['1840–1899']++
+        else counts['Pre-1840']++
       }
     })
     return Object.entries(counts)
@@ -160,7 +160,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
     if (filterType === 'voyage') {
       return ancestors.filter((p) => {
         const isImmigrant = isBornAbroad(p) || (p.milestones && p.milestones.some(m => m.type === 'EMIG' || m.type === 'IMMI'))
-        return selectedFilter === 'Crossed Oceans (Immigrants)' ? isImmigrant : !isImmigrant
+        return selectedFilter === 'Immigrants' ? isImmigrant : !isImmigrant
       })
     }
 
@@ -178,7 +178,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
     if (filterType === 'generation') {
       return ancestors.filter((p) => {
         const gen = p.generation || 1
-        const genLabel = gen <= 2 ? 'Gen 1–2 (Immediate)' : gen === 3 ? 'Gen 3 (Grandparents)' : gen === 4 ? 'Gen 4 (Great-Grandparents)' : `Gen ${gen}+ (Ancestors)`
+        const genLabel = gen <= 2 ? 'Gen 1–2' : gen === 3 ? 'Gen 3' : gen === 4 ? 'Gen 4' : `Gen ${gen}+`
         return genLabel === selectedFilter
       })
     }
@@ -186,9 +186,9 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
     if (filterType === 'era') {
       return ancestors.filter((p) => {
         if (!p.birthYear) return false
-        if (selectedFilter.includes('1900+')) return p.birthYear >= 1900
-        if (selectedFilter.includes('1840–1899')) return p.birthYear >= 1840 && p.birthYear < 1900
-        if (selectedFilter.includes('Pre-1840')) return p.birthYear < 1840
+        if (selectedFilter === '1900+') return p.birthYear >= 1900
+        if (selectedFilter === '1840–1899') return p.birthYear >= 1840 && p.birthYear < 1900
+        if (selectedFilter === 'Pre-1840') return p.birthYear < 1840
         return true
       })
     }
@@ -200,42 +200,42 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
     <div className="pillar-container constellation-pillar">
       {/* Overview Intro */}
       <section className="constellation-hero-card">
-        <h2>Constellation: Trades, Homelands &amp; Generations</h2>
+        <h2>Constellation</h2>
         <p>
-          Explore the living constellation of your ancestors—filter by craftsmanship and trades, ocean voyages, remarkable longevity, ancestral homelands, and generations.
+          Filter your family tree by trade, migration, lifespan, region, and generation.
         </p>
 
         <div className="stats-row">
           <div className="stat-box">
             <span className="stat-number">{ancestors.length}</span>
-            <span className="stat-label">Ancestors Documented</span>
+            <span className="stat-label">Ancestors</span>
           </div>
           <div className="stat-box">
             <span className="stat-number">{tradeStats.length}</span>
-            <span className="stat-label">Trades &amp; Crafts</span>
+            <span className="stat-label">Trades</span>
           </div>
           <div className="stat-box">
             <span className="stat-number">{immigrantTotal}</span>
-            <span className="stat-label">Ocean Voyagers</span>
+            <span className="stat-label">Immigrants</span>
           </div>
           <div className="stat-box">
             <span className="stat-number">{regionStats.length}</span>
-            <span className="stat-label">Homeland Regions</span>
+            <span className="stat-label">Regions</span>
           </div>
           <div className="stat-box">
             <span className="stat-number">{maxGeneration}</span>
-            <span className="stat-label">Generations Spanned</span>
+            <span className="stat-label">Generations</span>
           </div>
         </div>
       </section>
 
       {/* Interactive Filter Hub */}
       <section className="filter-hub">
-        {/* Filter by Trades & Crafts */}
+        {/* Filter by Trades */}
         {tradeStats.length > 0 && (
           <div className="filter-block">
             <div className="filter-block-header">
-              <h4>Filter by Trades &amp; Craftsmanship</h4>
+              <h4>Filter by Trade</h4>
               {selectedFilter !== 'ALL' && (
                 <button 
                   type="button" 
@@ -271,11 +271,11 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
           </div>
         )}
 
-        {/* Filter by Voyagers & Immigrants */}
+        {/* Filter by Immigration */}
         {voyageStats.length > 0 && (
           <div className="filter-block">
             <div className="filter-block-header">
-              <h4>Filter by Voyagers &amp; Migration</h4>
+              <h4>Filter by Immigration</h4>
             </div>
             <div className="cluster-tags">
               {voyageStats.map(({ label, count }) => {
@@ -299,11 +299,11 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
           </div>
         )}
 
-        {/* Filter by Longevity & Resilience */}
+        {/* Filter by Lifespan */}
         {longevityStats.length > 0 && (
           <div className="filter-block">
             <div className="filter-block-header">
-              <h4>Filter by Longevity &amp; Resilience</h4>
+              <h4>Filter by Lifespan</h4>
             </div>
             <div className="cluster-tags">
               {longevityStats.map(({ bracket, count }) => {
@@ -330,7 +330,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
         {/* Filter by Region */}
         <div className="filter-block">
           <div className="filter-block-header">
-            <h4>Filter by Homeland &amp; Region</h4>
+            <h4>Filter by Region</h4>
           </div>
           <div className="cluster-tags">
             {regionStats.map(({ region, count }) => {
@@ -382,7 +382,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
         {/* Filter by Era */}
         <div className="filter-block">
           <div className="filter-block-header">
-            <h4>Filter by Historical Era</h4>
+            <h4>Filter by Era</h4>
           </div>
           <div className="cluster-tags">
             {eraStats.map(({ era, count }) => {
@@ -411,8 +411,8 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
         <div className="results-header">
           <h3>
             {selectedFilter === 'ALL'
-              ? 'All Lineage Relatives'
-              : `Ancestors in: "${selectedFilter}"`}
+              ? 'All Ancestors'
+              : `Filter: "${selectedFilter}"`}
           </h3>
           <span className="showing-count">Showing {filteredAncestors.length} of {ancestors.length}</span>
         </div>

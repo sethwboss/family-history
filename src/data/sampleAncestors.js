@@ -6,28 +6,6 @@
 
 export const SAMPLE_ANCESTORS = [
   {
-    id: "KWKL-ZF1",
-    name: "Seth William Boss",
-    givenName: "Seth",
-    surname: "Boss",
-    relationship: "Self (Gen 1)",
-    generation: 1,
-    gender: "M",
-    birthYear: 2004,
-    birthDate: "21 Jun 2004",
-    birthPlace: "American Fork, Utah, United States",
-    birthRegion: "Utah, USA",
-    occupations: ["Computer Scientist", "Software Developer", "Student"],
-    interests: ["Coding & Technology", "Genealogy", "Gaming", "Outdoor Adventure"],
-    milestones: [
-      { age: 18, event: "Enrolled in BYU-Idaho Computer Science Program" },
-      { age: 20, event: "Developed Family History & Memories Discovery Platform" }
-    ],
-    bioSnippet: "Passionate computer scientist dedicated to uniting technology and heritage to keep family stories alive.",
-    familySearchId: "KWKL-ZF1",
-    familySearchUrl: "https://www.familysearch.org/tree/person/details/KWKL-ZF1"
-  },
-  {
     id: "LFM2-49F",
     name: "Gregory Jensen Boss",
     givenName: "Gregory",

@@ -3,8 +3,8 @@ import './TabBar.css'
 
 export default function TabBar({ activeTab, onSelectTab }) {
   const tabs = [
-    { id: 'matchmaker', title: 'Ancestor Matchmaker' },
     { id: 'timemirror', title: "Time-Traveler's Mirror" },
+    { id: 'matchmaker', title: 'Ancestor Matchmaker' },
     { id: 'constellation', title: 'Constellation' }
   ]
 

@@ -17,37 +17,37 @@ export const MONTH_OPTIONS = [
 export const HOMELAND_OPTIONS = [
   {
     id: 'utah_west',
-    label: 'Rocky Mountains & American West',
+    label: 'American West',
     keywords: ['utah', 'american fork', 'logan', 'garland', 'thatcher', 'spanish fork', 'salt lake', 'box elder', 'cache', 'idaho', 'bear lake', 'bingham', 'presto', 'menan', 'cassia', 'wyoming', 'colorado']
   },
   {
     id: 'britain',
-    label: 'Great Britain (England, Scotland, Wales)',
+    label: 'Great Britain',
     keywords: ['england', 'scotland', 'wales', 'great britain', 'uk', 'lancashire', 'yorkshire', 'london', 'liverpool', 'manchester']
   },
   {
     id: 'scandinavia',
-    label: 'Scandinavia (Denmark, Norway, Sweden)',
+    label: 'Scandinavia',
     keywords: ['denmark', 'norway', 'sweden', 'randers', 'kristrup', 'aalborg', 'svendborg', 'danmark', 'copenhagen']
   },
   {
     id: 'central_europe',
-    label: 'Central Europe & Alps (Switzerland, Germany)',
+    label: 'Central Europe',
     keywords: ['switzerland', 'bern', 'gündlischwand', 'swiss', 'alps', 'germany', 'deutschland', 'france']
   },
   {
     id: 'pacific',
-    label: 'Pacific Coast (California & West Coast)',
+    label: 'West Coast',
     keywords: ['california', 'san bernardino', 'los angeles', 'tulare', 'oregon', 'washington', 'pacific']
   },
   {
     id: 'canada',
-    label: 'Canadian Frontier (Alberta, Ontario)',
+    label: 'Canada',
     keywords: ['canada', 'alberta', 'raymond', 'lethbridge', 'ontario']
   },
   {
     id: 'eastern_us',
-    label: 'Eastern & Midwestern USA',
+    label: 'Eastern & Midwest US',
     keywords: ['ohio', 'new york', 'pennsylvania', 'illinois', 'massachusetts', 'virginia', 'missouri', 'iowa']
   }
 ]
@@ -55,32 +55,32 @@ export const HOMELAND_OPTIONS = [
 export const CALLING_OPTIONS = [
   {
     id: 'building_crafts',
-    label: 'Building, Crafts & Trades',
-    badge: 'Crafts & Trades',
+    label: 'Building & Crafts',
+    badge: 'Building & Crafts',
     keywords: ['builder', 'carpenter', 'blacksmith', 'mason', 'craft', 'woodwork', 'tailor', 'shoemaker', 'weaver', 'joiner', 'wheelwright', 'cooper', 'miller', 'mechanic', 'stone', 'iron', 'smith']
   },
   {
     id: 'farming_nature',
-    label: 'Farming, Agriculture & Outdoors',
-    badge: 'Agriculture & Nature',
+    label: 'Farming & Outdoors',
+    badge: 'Farming & Outdoors',
     keywords: ['farmer', 'farming', 'rancher', 'agriculture', 'gardener', 'yeoman', 'husbandman', 'laborer', 'shepherd', 'dairyman', 'homestead', 'land', 'orchard']
   },
   {
     id: 'care_teaching',
-    label: 'Teaching, Homemaking & Caregiving',
-    badge: 'Nurture & Education',
+    label: 'Teaching & Homemaking',
+    badge: 'Teaching & Homemaking',
     keywords: ['teacher', 'teaching', 'school', 'homemaker', 'mother', 'housewife', 'nurse', 'caregiver', 'midwife', 'domestic', 'family', 'full-time mother']
   },
   {
     id: 'business_leadership',
-    label: 'Commerce, Leadership & Civic Service',
-    badge: 'Commerce & Civic',
+    label: 'Business & Trade',
+    badge: 'Business & Trade',
     keywords: ['merchant', 'clerk', 'store', 'shop', 'grocer', 'manager', 'sales', 'innkeeper', 'business', 'leader', 'postmaster', 'mayor', 'agent', 'project manager', 'problem solver']
   },
   {
     id: 'tech_science',
-    label: 'Technology, Science & Innovation',
-    badge: 'Science & Innovation',
+    label: 'Science & Tech',
+    badge: 'Science & Tech',
     keywords: ['engineer', 'computer', 'science', 'scientist', 'developer', 'software', 'technology', 'problem solver', 'technician', 'inventor', 'coding']
   }
 ]
