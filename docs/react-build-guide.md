@@ -78,7 +78,7 @@ All 3 core pillars run seamlessly on a single page with zero page reloads:
          ├──► [ Active Tab: "Time-Traveler's Mirror" ]
          │       └── Current Age Slider (e.g. 21) ──► milestoneHelpers() ──► Age Timeline
          │
-         └──► [ Active Tab: "Heritage Constellation" ]
+         └──► [ Active Tab: "Constellation" ]
                  └── Selected Trade / Craft ──► Branch Filter ──► Visual Cluster
 ```
 

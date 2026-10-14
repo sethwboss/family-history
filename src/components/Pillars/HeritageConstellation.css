@@ -244,6 +244,24 @@
   border: 1px solid #c8e6c9;
 }
 
+.voyage-pill {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #bbdefb;
+}
+
+.lifespan-pill {
+  background-color: #fff8e1;
+  color: #b78103;
+  border: 1px solid #ffe082;
+}
+
+.showing-count {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
 .card-actions-row {
   display: flex;
   justify-content: space-between;

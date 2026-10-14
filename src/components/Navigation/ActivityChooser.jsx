@@ -21,7 +21,7 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
         </svg>
       ),
       title: 'Ancestor Matchmaker',
-      description: 'Who do you take after? Select your personal hobbies, craft orientations, and ancestral homelands to reveal which ancestor you resemble most through compatibility scoring.',
+      description: 'Who do you take after? Answer a few questions about yourself—your birth month, where you live or travel, your passions, and life journey—to find your heritage twins.',
       buttonText: 'Open Matchmaker'
     },
     {
@@ -45,8 +45,8 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
           <line x1="15" y1="6" x2="15" y2="21" />
         </svg>
       ),
-      title: 'Heritage Constellation',
-      description: 'Explore the generational branches, historical eras, and geographic homelands that shaped your lineage across generations.',
+      title: 'Constellation',
+      description: 'Explore the living network of trades, ocean voyages, remarkable longevity, ancestral homelands, and generations across your lineage.',
       buttonText: 'Open Constellation'
     }
   ]

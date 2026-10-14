@@ -5,7 +5,7 @@ export default function TabBar({ activeTab, onSelectTab }) {
   const tabs = [
     { id: 'matchmaker', title: 'Ancestor Matchmaker' },
     { id: 'timemirror', title: "Time-Traveler's Mirror" },
-    { id: 'constellation', title: 'Heritage Constellation' }
+    { id: 'constellation', title: 'Constellation' }
   ]
 
   return (

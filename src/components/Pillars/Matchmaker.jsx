@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useRef } from 'react'
 import {
   calculateAncestorMatches,
-  REGION_DEFINITIONS,
-  ERA_OPTIONS,
-  MILESTONE_OPTIONS,
+  HOMELAND_OPTIONS,
+  CALLING_OPTIONS,
+  SPIRIT_OPTIONS,
   MONTH_OPTIONS
 } from '../../utils/matchingEngine'
 import Avatar from '../Common/Avatar'
@@ -14,8 +14,8 @@ import './Matchmaker.css'
 export default function Matchmaker({ ancestors, onSelectPerson }) {
   const [selectedMonth, setSelectedMonth] = useState(null)
   const [selectedRegions, setSelectedRegions] = useState([])
-  const [selectedEra, setSelectedEra] = useState(null)
-  const [selectedMilestones, setSelectedMilestones] = useState([])
+  const [selectedCallings, setSelectedCallings] = useState([])
+  const [selectedSpirits, setSelectedSpirits] = useState([])
   const [hasSubmittedQuiz, setHasSubmittedQuiz] = useState(false)
   const resultsRef = useRef(null)
 
@@ -27,11 +27,19 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
     )
   }
 
-  const toggleMilestone = (milestoneId) => {
-    setSelectedMilestones((prev) =>
-      prev.includes(milestoneId)
-        ? prev.filter((m) => m !== milestoneId)
-        : [...prev, milestoneId]
+  const toggleCalling = (callingId) => {
+    setSelectedCallings((prev) =>
+      prev.includes(callingId)
+        ? prev.filter((c) => c !== callingId)
+        : [...prev, callingId]
+    )
+  }
+
+  const toggleSpirit = (spiritId) => {
+    setSelectedSpirits((prev) =>
+      prev.includes(spiritId)
+        ? prev.filter((s) => s !== spiritId)
+        : [...prev, spiritId]
     )
   }
 
@@ -41,12 +49,12 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
       {
         birthMonth: selectedMonth,
         regions: selectedRegions,
-        era: selectedEra,
-        milestones: selectedMilestones
+        callings: selectedCallings,
+        spirits: selectedSpirits
       },
       ancestors
     )
-  }, [selectedMonth, selectedRegions, selectedEra, selectedMilestones, ancestors])
+  }, [selectedMonth, selectedRegions, selectedCallings, selectedSpirits, ancestors])
 
   const topMatches = matches.slice(0, 6)
 
@@ -64,7 +72,7 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
         <div className="quiz-header">
           <h2>Discover Your Heritage Twins &amp; Ancestral Roots</h2>
           <p>
-            Match with ancestors across authentic historical records—your birth month, ancestral homelands, generational eras, and life milestones.
+            Tell us about <strong>yourself</strong>—your birth month, where you live or dream of traveling, your favorite skills/passions, and your life journey. We'll cross-reference your traits with verified records in your family tree to find your generational matches!
           </p>
         </div>
 
@@ -94,16 +102,16 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
             </div>
           </div>
 
-          {/* 2. Geographic Roots & Homelands */}
+          {/* 2. Where You Live or Dream of Traveling */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>2. Geographic Roots &amp; Homelands</span>
+              <span>2. Where You Live or Dream of Traveling (Homeland Roots)</span>
               {selectedRegions.length > 0 && (
                 <span className="selection-count">{selectedRegions.length} selected</span>
               )}
             </label>
             <div className="chips-wrap">
-              {REGION_DEFINITIONS.map((reg) => {
+              {HOMELAND_OPTIONS.map((reg) => {
                 const isSelected = selectedRegions.includes(reg.id)
                 return (
                   <button
@@ -119,52 +127,51 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
             </div>
           </div>
 
-          {/* 3. Historical Era / Generation */}
+          {/* 3. Your Calling, Skills & Passions */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>3. Historical Era &amp; Lineage</span>
-              {selectedEra && (
-                <span className="selection-count">
-                  {ERA_OPTIONS.find(e => e.id === selectedEra)?.label}
-                </span>
+              <span>3. Your Calling, Skills &amp; Passions (What You Do or Love)</span>
+              {selectedCallings.length > 0 && (
+                <span className="selection-count">{selectedCallings.length} selected</span>
               )}
             </label>
             <div className="chips-wrap">
-              {ERA_OPTIONS.map((era) => {
-                const isSelected = selectedEra === era.id
+              {CALLING_OPTIONS.map((calling) => {
+                const isSelected = selectedCallings.includes(calling.id)
                 return (
                   <button
-                    key={era.id}
+                    key={calling.id}
                     type="button"
-                    className={`chip radio-chip ${isSelected ? 'selected' : ''}`}
-                    onClick={() => setSelectedEra(prev => prev === era.id ? null : era.id)}
+                    className={`chip ${isSelected ? 'selected' : ''}`}
+                    onClick={() => toggleCalling(calling.id)}
                   >
-                    <span>{era.label}</span>
+                    <span>{calling.label}</span>
                   </button>
                 )
               })}
             </div>
           </div>
 
-          {/* 4. Life Milestones & Journey */}
+          {/* 4. Your Life Spirit & Personal Journey */}
           <div className="quiz-field">
             <label className="field-label">
-              <span>4. Life Journey &amp; Milestones</span>
-              {selectedMilestones.length > 0 && (
-                <span className="selection-count">{selectedMilestones.length} selected</span>
+              <span>4. Your Life Spirit &amp; Journey (Your Personal Values)</span>
+              {selectedSpirits.length > 0 && (
+                <span className="selection-count">{selectedSpirits.length} selected</span>
               )}
             </label>
             <div className="chips-wrap">
-              {MILESTONE_OPTIONS.map((m) => {
-                const isSelected = selectedMilestones.includes(m.id)
+              {SPIRIT_OPTIONS.map((spirit) => {
+                const isSelected = selectedSpirits.includes(spirit.id)
                 return (
                   <button
-                    key={m.id}
+                    key={spirit.id}
                     type="button"
                     className={`chip ${isSelected ? 'selected' : ''}`}
-                    onClick={() => toggleMilestone(m.id)}
+                    onClick={() => toggleSpirit(spirit.id)}
+                    title={spirit.subtitle}
                   >
-                    <span>{m.label}</span>
+                    <span><strong>{spirit.label}</strong>: {spirit.subtitle}</span>
                   </button>
                 )
               })}
@@ -179,11 +186,11 @@ export default function Matchmaker({ ancestors, onSelectPerson }) {
               onClick={handleCalculate}
               id="calculate-matches-btn"
             >
-              {hasSubmittedQuiz ? 'Update Matches' : 'Find Matching Ancestors'}
+              {hasSubmittedQuiz ? 'Update My Matches' : 'Find My Ancestor Matches'}
             </button>
             {!hasSubmittedQuiz && (
               <span className="quiz-hint-text">
-                Scan your tree for shared birthdays, homelands, and generations
+                Scan your family tree for shared birth months, homelands, trades, and life journeys
               </span>
             )}
           </div>
