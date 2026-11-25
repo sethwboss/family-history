@@ -153,9 +153,9 @@ export default function AnimationTestPage() {
               <animate attributeName="rx" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="0;54" keyTimes="0;1" />
               <animate attributeName="ry" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="0;20" keyTimes="0;1" />
             </ellipse>
-            <path className="time-glass-stream" d="M150 149 V274">
-              <animate attributeName="d" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="M150 149 V274;M150 149 V212" keyTimes="0;1" />
-              <animate attributeName="opacity" dur="14s" repeatCount="1" fill="freeze" values="1;0" keyTimes="0;1" />
+            <path className="time-glass-stream" d="M150 158 V274">
+              <animate attributeName="d" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="M150 158 V274;M150 158 V212" keyTimes="0;1" />
+              <animate attributeName="opacity" dur="14s" repeatCount="1" fill="freeze" values="1;1" keyTimes="0;1" />
             </path>
           </svg>
         </section>
