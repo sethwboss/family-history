@@ -5,6 +5,8 @@ import './WelcomeHero.css'
 export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
   const [activeGuideTab, setActiveGuideTab] = useState('ancestry')
   const [isGuideOpen, setIsGuideOpen] = useState(false) // Closed by default
+  const [showTextInstructions, setShowTextInstructions] = useState(false)
+  const [isVideoExpanded, setIsVideoExpanded] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [errorMsg, setErrorMsg] = useState(null)
@@ -67,7 +69,7 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
   }
 
   return (
-    <section className="welcome-hero-container">
+    <section className={`welcome-hero-container ${isVideoExpanded ? 'video-expanded' : ''}`}>
       <div className="welcome-hero-card">
         
         {/* Header */}
@@ -124,7 +126,11 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
           <button
             type="button"
             className="guide-dropdown-toggle"
-            onClick={() => setIsGuideOpen(!isGuideOpen)}
+            onClick={() => {
+              const nextOpen = !isGuideOpen
+              setIsGuideOpen(nextOpen)
+              if (nextOpen) setShowTextInstructions(false)
+            }}
             aria-expanded={isGuideOpen}
             id="how-to-get-file-dropdown-btn"
           >
@@ -140,18 +146,53 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                 <button
                   type="button"
                   className={`guide-choice-btn ${activeGuideTab === 'ancestry' ? 'active' : ''}`}
-                  onClick={() => setActiveGuideTab('ancestry')}
+                  onClick={() => {
+                    setActiveGuideTab('ancestry')
+                    setShowTextInstructions(false)
+                  }}
                 >
                   Ancestry.com (Recommended)
                 </button>
                 <button
                   type="button"
                   className={`guide-choice-btn ${activeGuideTab === 'familysearch' ? 'active' : ''}`}
-                  onClick={() => setActiveGuideTab('familysearch')}
+                  onClick={() => {
+                    setActiveGuideTab('familysearch')
+                    setShowTextInstructions(true)
+                  }}
                 >
                   FamilySearch
                 </button>
               </div>
+
+              {activeGuideTab === 'ancestry' && (
+                <>
+                  <div className={`guide-video-wrapper ${isVideoExpanded ? 'expanded' : ''}`}>
+                    <video className="guide-video" controls preload="metadata" playsInline>
+                      <source src={`${import.meta.env.BASE_URL}memorylink-gedcom-demo.mp4`} type="video/mp4" />
+                      Your browser does not support embedded videos.
+                    </video>
+                  </div>
+                  <div className="guide-video-actions">
+                    <button
+                      type="button"
+                      className="guide-text-toggle"
+                      onClick={() => setIsVideoExpanded(!isVideoExpanded)}
+                      aria-pressed={isVideoExpanded}
+                    >
+                      {isVideoExpanded ? 'Reduce video' : 'Enlarge video'}
+                    </button>
+                    <button
+                      type="button"
+                      className="guide-text-toggle"
+                      onClick={() => setShowTextInstructions(!showTextInstructions)}
+                      aria-expanded={showTextInstructions}
+                    >
+                      {showTextInstructions ? 'Hide text instructions' : 'Show text instructions'}
+                    </button>
+                  </div>
+                </>
+              )}
 
               {activeGuideTab === 'familysearch' && (
                 <div className="guide-disclaimer" role="note">
@@ -159,7 +200,8 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                 </div>
               )}
 
-              <div className="guide-steps-list">
+              {(activeGuideTab === 'familysearch' || showTextInstructions) && (
+                <div className="guide-steps-list">
                 {activeGuideTab === 'ancestry' ? (
                   <>
                     <div className="guide-step-row">
@@ -178,7 +220,7 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                     <div className="guide-step-row">
                       <span className="step-num">2</span>
                       <div className="step-content">
-                        <strong>Export your tree:</strong> On the Tree settings page, click <em>Export tree</em> to download your family tree file.
+                        <strong>Export your tree:</strong> On the Tree settings page, click <em>Export tree</em>.
                         <div className="guide-step-img-wrapper">
                           <img
                             src={`${import.meta.env.BASE_URL}ancestry-export-tree.png`}
@@ -230,7 +272,8 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                     </div>
                   </>
                 )}
-              </div>
+                </div>
+              )}
             </div>
           )}
         </div>

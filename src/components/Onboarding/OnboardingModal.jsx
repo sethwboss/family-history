@@ -11,6 +11,8 @@ export default function OnboardingModal({
 }) {
   const [activeGuideTab, setActiveGuideTab] = useState('ancestry')
   const [isGuideOpen, setIsGuideOpen] = useState(false)
+  const [showTextInstructions, setShowTextInstructions] = useState(false)
+  const [isVideoExpanded, setIsVideoExpanded] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [errorMsg, setErrorMsg] = useState(null)
@@ -79,7 +81,7 @@ export default function OnboardingModal({
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div 
-        className="onboarding-modal" 
+        className={`onboarding-modal ${isVideoExpanded ? 'video-expanded' : ''}`} 
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -148,7 +150,11 @@ export default function OnboardingModal({
           <button
             type="button"
             className="guide-dropdown-toggle"
-            onClick={() => setIsGuideOpen(!isGuideOpen)}
+            onClick={() => {
+              const nextOpen = !isGuideOpen
+              setIsGuideOpen(nextOpen)
+              if (nextOpen) setShowTextInstructions(false)
+            }}
             aria-expanded={isGuideOpen}
             id="modal-how-to-get-file-btn"
           >
@@ -164,18 +170,53 @@ export default function OnboardingModal({
                 <button
                   type="button"
                   className={`guide-choice-btn ${activeGuideTab === 'ancestry' ? 'active' : ''}`}
-                  onClick={() => setActiveGuideTab('ancestry')}
+                  onClick={() => {
+                    setActiveGuideTab('ancestry')
+                    setShowTextInstructions(false)
+                  }}
                 >
                   Ancestry.com (Recommended)
                 </button>
                 <button
                   type="button"
                   className={`guide-choice-btn ${activeGuideTab === 'familysearch' ? 'active' : ''}`}
-                  onClick={() => setActiveGuideTab('familysearch')}
+                  onClick={() => {
+                    setActiveGuideTab('familysearch')
+                    setShowTextInstructions(true)
+                  }}
                 >
                   FamilySearch
                 </button>
               </div>
+
+              {activeGuideTab === 'ancestry' && (
+                <>
+                  <div className={`guide-video-wrapper ${isVideoExpanded ? 'expanded' : ''}`}>
+                    <video className="guide-video" controls preload="metadata" playsInline>
+                      <source src={`${import.meta.env.BASE_URL}memorylink-gedcom-demo.mp4`} type="video/mp4" />
+                      Your browser does not support embedded videos.
+                    </video>
+                  </div>
+                  <div className="guide-video-actions">
+                    <button
+                      type="button"
+                      className="guide-text-toggle"
+                      onClick={() => setIsVideoExpanded(!isVideoExpanded)}
+                      aria-pressed={isVideoExpanded}
+                    >
+                      {isVideoExpanded ? 'Reduce video' : 'Enlarge video'}
+                    </button>
+                    <button
+                      type="button"
+                      className="guide-text-toggle"
+                      onClick={() => setShowTextInstructions(!showTextInstructions)}
+                      aria-expanded={showTextInstructions}
+                    >
+                      {showTextInstructions ? 'Hide text instructions' : 'Show text instructions'}
+                    </button>
+                  </div>
+                </>
+              )}
 
               {activeGuideTab === 'familysearch' && (
                 <div className="guide-disclaimer" role="note">
@@ -183,7 +224,8 @@ export default function OnboardingModal({
                 </div>
               )}
 
-              <div className="guide-steps-list">
+              {(activeGuideTab === 'familysearch' || showTextInstructions) && (
+                <div className="guide-steps-list">
                 {activeGuideTab === 'ancestry' ? (
                   <>
                     <div className="guide-step-row">
@@ -202,7 +244,7 @@ export default function OnboardingModal({
                     <div className="guide-step-row">
                       <span className="step-num">2</span>
                       <div className="step-content">
-                        <strong>Export your tree:</strong> On the Tree settings page, click <em>Export tree</em> to download your family tree file.
+                        <strong>Export your tree:</strong> On the Tree settings page, click <em>Export tree</em>.
                         <div className="guide-step-img-wrapper">
                           <img
                             src={`${import.meta.env.BASE_URL}ancestry-export-tree.png`}
@@ -254,7 +296,8 @@ export default function OnboardingModal({
                     </div>
                   </>
                 )}
-              </div>
+                </div>
+              )}
             </div>
           )}
         </div>
