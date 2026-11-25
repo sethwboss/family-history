@@ -227,10 +227,9 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
             <span className="stat-label">Generations</span>
           </div>
         </div>
-      </section>
 
       {/* Interactive Filter Hub */}
-      <section className="filter-hub">
+      <div className="filter-hub">
         {/* Filter by Trades */}
         {tradeStats.length > 0 && (
           <div className="filter-block">
@@ -404,6 +403,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
             })}
           </div>
         </div>
+      </div>
       </section>
 
       {/* Filtered Grid */}

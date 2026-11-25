@@ -18,7 +18,7 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
           <polyline points="12 6 12 12 16 14" />
         </svg>
       ),
-      title: "Time-Traveler's Mirror",
+      title: "Time-Traveler",
       description: 'See what your ancestors were doing and where they lived at your exact age.',
       buttonText: 'Open Time Mirror'
     },
@@ -32,7 +32,7 @@ export default function ActivityChooser({ ancestorsCount, treeName, onSelectActi
           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
         </svg>
       ),
-      title: 'Ancestor Matchmaker',
+      title: 'Matchmaker',
       description: 'Find ancestors in your tree who share your birth month, region, or trade.',
       buttonText: 'Open Matchmaker'
     },
