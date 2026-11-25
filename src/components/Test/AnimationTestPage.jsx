@@ -137,7 +137,7 @@ export default function AnimationTestPage() {
                 <path d="M87 30 C87 96 114 118 150 160 C186 118 213 96 213 30 Z" />
               </clipPath>
               <clipPath id="time-glass-bottom-clip">
-                <path d="M87 284 C87 224 114 202 150 160 C186 202 213 224 213 284 Z" />
+                <path d="M84 284 C84 224 113 202 150 160 C187 202 216 224 216 284 Z" />
               </clipPath>
             </defs>
             <path className="time-glass-frame" d="M66 30 H234 M66 290 H234" />
@@ -145,16 +145,16 @@ export default function AnimationTestPage() {
             <rect className="time-glass-sand time-glass-sand-top" x="84" y="38" width="132" height="132" clipPath="url(#time-glass-top-clip)">
               <animate attributeName="y" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="38;159" keyTimes="0;1" />
             </rect>
-            <rect className="time-glass-sand time-glass-sand-bottom" x="84" y="282" width="132" height="132" clipPath="url(#time-glass-bottom-clip)">
-              <animate attributeName="y" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="282;160" keyTimes="0;1" />
+            <rect className="time-glass-sand time-glass-sand-bottom" x="84" y="284" width="132" height="132" clipPath="url(#time-glass-bottom-clip)">
+              <animate attributeName="y" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="284;284;160" keyTimes="0;0.02;1" />
             </rect>
-            <ellipse className="time-glass-sand time-glass-mound" cx="150" cy="274" rx="0" ry="0" clipPath="url(#time-glass-bottom-clip)">
-              <animate attributeName="cy" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="274;274" keyTimes="0;1" />
-              <animate attributeName="rx" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="0;54" keyTimes="0;1" />
-              <animate attributeName="ry" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="0;20" keyTimes="0;1" />
+            <ellipse className="time-glass-sand time-glass-mound" cx="150" cy="284" rx="0" ry="0" clipPath="url(#time-glass-bottom-clip)">
+              <animate attributeName="cy" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="284;284;160" keyTimes="0;0.02;1" />
+              <animate attributeName="rx" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="0;6;16" keyTimes="0;0.02;1" />
+              <animate attributeName="ry" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="0;2;6" keyTimes="0;0.02;1" />
             </ellipse>
             <path className="time-glass-stream" d="M150 158 V164">
-              <animate attributeName="d" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="M150 158 V164;M150 158 V274;M150 158 V274" keyTimes="0;0.02;1" />
+              <animate attributeName="d" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="M150 158 V164;M150 158 V280;M150 158 V280" keyTimes="0;0.02;1" />
               <animate attributeName="opacity" dur="14s" repeatCount="1" fill="freeze" values="1;1" keyTimes="0;1" />
             </path>
           </svg>
