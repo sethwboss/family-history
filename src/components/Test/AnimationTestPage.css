@@ -1,0 +1,461 @@
+.animation-test-page {
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100vh - 78px);
+  overflow: hidden;
+  padding: clamp(64px, 10vw, 128px) 24px 120px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(197, 225, 165, 0.34), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(232, 245, 233, 0.9), transparent 34%),
+    var(--color-bg);
+}
+
+.test-background-orb {
+  position: absolute;
+  z-index: 0;
+  width: clamp(280px, 34vw, 500px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(38px);
+  opacity: 0.28;
+  pointer-events: none;
+  animation: testOrbFloat 16s ease-in-out infinite alternate;
+}
+
+.animation-test-shell:not(.concept-blend) .test-background-orb {
+  opacity: 0;
+  animation: none;
+}
+
+.animation-test-shell:not(.concept-leaves) .test-leaves {
+  opacity: 0;
+  animation: none;
+}
+
+.animation-test-shell:not(.concept-blend) .test-small-orbs {
+  opacity: 0;
+}
+
+.animation-test-shell.concept-blend .test-background-orb {
+  opacity: 0.9;
+  transform: scale(1.2);
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-name: testOrbPath;
+  animation-direction: normal;
+  offset-path: path('M 0 0 C 240 -180, 620 -150, 520 40 C 460 260, 200 380, -70 200 C -360 70, -600 -240, -250 -370 C -50 -430, 300 -320, 0 0');
+  offset-distance: 0%;
+  offset-rotate: 0deg;
+}
+
+.animation-test-shell.concept-leaves .animation-test-page {
+  background: var(--color-bg);
+}
+
+.animation-test-shell.concept-blend .animation-test-page {
+  background-size: 140% 140%;
+  animation: testCanvasBreath 4s ease-in-out infinite alternate;
+}
+
+.test-leaves {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.test-leaves span {
+  position: absolute;
+  left: var(--leaf-left);
+  bottom: -24px;
+  width: var(--leaf-size);
+  height: calc(var(--leaf-size) * 0.58);
+  border-radius: 100% 0 100% 0;
+  background: #d5a333;
+  box-shadow: 0 0 12px rgba(213, 163, 51, 0.28);
+  opacity: 1;
+  animation: testLeafDrift var(--leaf-duration) linear var(--leaf-delay) infinite;
+}
+
+.test-small-orbs {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.test-small-orbs span {
+  position: absolute;
+  left: var(--orb-left);
+  top: var(--orb-top);
+  width: var(--orb-size);
+  height: var(--orb-size);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 225, 165, 0.58) 0%, rgba(197, 225, 165, 0.3) 48%, rgba(232, 245, 233, 0.12) 76%, transparent 100%);
+  filter: blur(30px);
+  opacity: 0.66;
+  animation: testSmallOrbDrift var(--orb-duration) ease-in-out var(--orb-delay) infinite alternate;
+}
+
+.orb-one {
+  top: 14%;
+  left: 4%;
+  background: radial-gradient(circle at 35% 35%, rgba(62, 116, 49, 0.52) 0%, rgba(62, 116, 49, 0.32) 30%, rgba(85, 139, 47, 0.19) 54%, rgba(85, 139, 47, 0.08) 74%, transparent 100%);
+}
+
+.orb-two {
+  right: 4%;
+  bottom: 8%;
+  background: radial-gradient(circle at 50% 45%, rgba(62, 116, 49, 0.48) 0%, rgba(62, 116, 49, 0.28) 32%, rgba(85, 139, 47, 0.17) 56%, rgba(85, 139, 47, 0.07) 76%, transparent 100%);
+  animation-delay: -7s;
+}
+
+.animation-test-intro,
+.animation-test-cards {
+  position: relative;
+  z-index: 1;
+  width: min(1040px, 100%);
+  margin: 0 auto;
+}
+
+.animation-test-intro {
+  text-align: center;
+}
+
+.test-eyebrow {
+  display: inline-flex;
+  padding: 5px 12px;
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-full);
+  background: rgba(241, 248, 233, 0.78);
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.animation-test-intro h1 {
+  max-width: 720px;
+  margin: 18px auto 14px;
+  color: var(--color-primary);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  letter-spacing: -0.04em;
+}
+
+.animation-test-intro p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.motion-toggle {
+  margin-top: 28px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.motion-toggle:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.animation-test-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: clamp(56px, 9vw, 104px);
+}
+
+.animation-test-card {
+  display: flex;
+  gap: 14px;
+  min-height: 150px;
+  padding: 22px;
+  border: 1px solid rgba(197, 225, 165, 0.9);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+
+.animation-test-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.animation-test-card.active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(85, 139, 47, 0.14), var(--shadow-lg);
+}
+
+.game-animation-preview {
+  display: grid;
+  place-items: center;
+  min-height: 390px;
+  margin: 34px auto 0;
+}
+
+.time-glass-svg {
+  width: min(340px, 62vw);
+  height: auto;
+  overflow: visible;
+  transform-origin: center;
+}
+
+.time-glass-svg.is-flipping {
+  animation: timeGlassFlip 900ms ease-in-out forwards;
+}
+
+.time-glass-frame,
+.time-glass-outline {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.time-glass-frame { stroke-width: 12; }
+.time-glass-outline { stroke-width: 5; opacity: 0.7; }
+
+.time-glass-sand {
+  fill: #d5a333;
+}
+
+.time-glass-sand-top {
+  animation: none;
+}
+
+.time-glass-sand-bottom {
+  animation: none;
+}
+
+.time-glass-stream {
+  fill: none;
+  stroke: #d5a333;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 4 7;
+}
+
+.time-glass-svg.is-flipping .time-glass-stream {
+  animation: none;
+  opacity: 0;
+}
+
+.grain-two { animation-delay: -0.9s; }
+
+@keyframes timeGlassFlip {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(180deg); }
+}
+
+.game-animation-card .concept-icon {
+  position: relative;
+}
+
+.animation-test-shell.concept-timetraveler .game-animation-card:nth-child(1) .concept-icon {
+  animation: gameTimeRibbon 2.4s ease-in-out infinite;
+}
+
+.animation-test-shell.concept-matchmaker .game-animation-card:nth-child(2) .concept-icon {
+  animation: gameTimeRibbon 2.4s ease-in-out infinite;
+}
+
+.animation-test-shell.concept-constellation .game-animation-card:nth-child(3) .concept-icon {
+  animation: gameStarMap 2.8s ease-in-out infinite;
+}
+
+.concept-icon {
+  display: grid;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.concept-icon-glow { background: var(--color-accent-subtle); }
+.concept-icon-pulse { background: #e2f0d9; }
+
+.animation-test-card h2 {
+  margin-bottom: 5px;
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.animation-test-card p {
+  color: var(--color-text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.motion-paused *,
+.motion-paused *::before,
+.motion-paused *::after {
+  animation-play-state: paused !important;
+}
+
+@keyframes testOrbFloat {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  12% { transform: translate3d(150px, -96px, 0) scale(1.08) rotate(7deg); }
+  25% { transform: translate3d(330px, 28px, 0) scale(1.2) rotate(15deg); }
+  39% { transform: translate3d(205px, 178px, 0) scale(1.1) rotate(8deg); }
+  53% { transform: translate3d(-42px, 116px, 0) scale(0.94) rotate(-6deg); }
+  67% { transform: translate3d(-286px, -54px, 0) scale(1.12) rotate(-14deg); }
+  81% { transform: translate3d(-148px, -218px, 0) scale(1.22) rotate(-5deg); }
+  93% { transform: translate3d(116px, -154px, 0) scale(1.06) rotate(6deg); }
+  100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+}
+
+@keyframes testOrbPath {
+  0% { offset-distance: 0%; transform: scale(1); }
+  50% { offset-distance: 50%; transform: scale(1.18); }
+  100% { offset-distance: 100%; transform: scale(1); }
+}
+
+@keyframes testLeafDrift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
+  12% { opacity: 1; }
+  50% { transform: translate3d(36px, -50vh, 0) rotate(180deg); }
+  100% { transform: translate3d(-24px, -115vh, 0) rotate(360deg); opacity: 1; }
+}
+
+@keyframes testSmallOrbDrift {
+  0% { transform: translate3d(-90px, 64px, 0) scale(0.82); }
+  50% { transform: translate3d(120px, -110px, 0) scale(1.18); }
+  100% { transform: translate3d(-54px, 150px, 0) scale(0.92); }
+}
+
+@keyframes testGrowthLine {
+  0%, 100% { background-position: 0% 50%; opacity: 0.35; }
+  50% { background-position: 100% 50%; opacity: 0.8; }
+}
+
+@keyframes testCanvasBreath {
+  from { background-position: 0% 0%, 100% 100%; }
+  to { background-position: 35% 20%, 65% 80%; }
+}
+
+@keyframes testRootPulse {
+  0%, 100% { background-position: 20% 50%; }
+  50% { background-position: 80% 50%; }
+}
+
+@keyframes testRootRing {
+  0%, 100% { opacity: 0.35; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes gameTimeRibbon {
+  0%, 100% { transform: translateX(-3px) rotate(-8deg); box-shadow: 0 0 0 rgba(85, 139, 47, 0); }
+  50% { transform: translateX(3px) rotate(8deg); box-shadow: 0 0 16px rgba(85, 139, 47, 0.42); }
+}
+
+@keyframes gameConnectionWeb {
+  0%, 100% { transform: scale(0.92); box-shadow: 0 0 0 rgba(85, 139, 47, 0); }
+  50% { transform: scale(1.12); box-shadow: 0 0 18px rgba(85, 139, 47, 0.5); }
+}
+
+@keyframes gameStarMap {
+  0%, 100% { transform: rotate(0deg) scale(0.94); filter: brightness(1); }
+  50% { transform: rotate(12deg) scale(1.12); filter: brightness(1.3); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animation-test-page *,
+  .animation-test-page *::before,
+  .animation-test-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .animation-test-page { padding-inline: 16px; }
+  .animation-test-cards { grid-template-columns: 1fr; }
+}
+.animation-test-shell {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.animation-test-shell .app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.animation-test-shell .site-footer {
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.animation-test-shell .app-header::after,
+.animation-test-shell .site-footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), var(--color-primary), var(--color-accent), transparent);
+  background-size: 200% 100%;
+  opacity: 0;
+}
+
+.animation-test-shell .app-header::after { bottom: 0; }
+.animation-test-shell .site-footer::before { top: 0; }
+
+.animation-test-shell.concept-blend .app-header::after,
+.animation-test-shell.concept-blend .site-footer::before,
+.animation-test-shell.concept-pulse .app-header::after,
+.animation-test-shell.concept-pulse .site-footer::before {
+  opacity: 1;
+  animation: testGrowthLine 8s ease-in-out infinite;
+}
+
+.animation-test-shell.concept-blend .app-header::after,
+.animation-test-shell.concept-blend .site-footer::before {
+  animation-duration: 2.4s;
+}
+
+.animation-test-shell.concept-pulse .animation-test-page {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(35, 92, 43, 0.18), transparent 24%),
+    var(--color-bg);
+  background-size: 180% 180%;
+  animation: testRootPulse 7s ease-in-out infinite;
+}
+
+.animation-test-shell.concept-pulse .animation-test-page::after {
+  content: '';
+  position: absolute;
+  inset: 12% 8%;
+  border: 1px solid rgba(35, 92, 43, 0.26);
+  border-radius: 28px;
+  box-shadow: 0 0 40px rgba(35, 92, 43, 0.12), inset 0 0 40px rgba(85, 139, 47, 0.08);
+  pointer-events: none;
+  animation: testRootRing 7s ease-in-out infinite;
+}
+

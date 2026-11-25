@@ -1,9 +1,9 @@
 import React from 'react'
 import './Header.css'
 
-export default function Header({ onGoHome }) {
+export default function Header({ onGoHome, className = '' }) {
   return (
-    <header className="app-header">
+    <header className={`app-header ${className}`.trim()}>
       <div className="header-inner">
         <button
           type="button"

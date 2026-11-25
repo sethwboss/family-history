@@ -219,6 +219,10 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
             <span className="stat-label">Immigrants</span>
           </div>
           <div className="stat-box">
+            <span className="stat-number">{longevityStats.length}</span>
+            <span className="stat-label">Lifespans</span>
+          </div>
+          <div className="stat-box">
             <span className="stat-number">{regionStats.length}</span>
             <span className="stat-label">Regions</span>
           </div>
@@ -226,13 +230,17 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
             <span className="stat-number">{maxGeneration}</span>
             <span className="stat-label">Generations</span>
           </div>
+          <div className="stat-box">
+            <span className="stat-number">{eraStats.length}</span>
+            <span className="stat-label">Eras</span>
+          </div>
         </div>
 
       {/* Interactive Filter Hub */}
       <div className="filter-hub">
         {/* Filter by Trades */}
         {tradeStats.length > 0 && (
-          <div className="filter-block">
+          <div className="filter-block trade-filter">
             <div className="filter-block-header">
               <h4>Filter by Trade</h4>
               {selectedFilter !== 'ALL' && (
@@ -261,7 +269,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
                       setFilterType('trade')
                     }}
                   >
-                    <span className="tag-name">🔨 {trade}</span>
+                    <span className="tag-name">{trade}</span>
                     <span className="tag-count">{count}</span>
                   </button>
                 )
@@ -272,7 +280,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
 
         {/* Filter by Immigration */}
         {voyageStats.length > 0 && (
-          <div className="filter-block">
+          <div className="filter-block voyage-filter">
             <div className="filter-block-header">
               <h4>Filter by Immigration</h4>
             </div>
@@ -289,7 +297,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
                       setFilterType('voyage')
                     }}
                   >
-                    <span className="tag-name">🚢 {label}</span>
+                    <span className="tag-name">{label}</span>
                     <span className="tag-count">{count}</span>
                   </button>
                 )
@@ -300,7 +308,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
 
         {/* Filter by Lifespan */}
         {longevityStats.length > 0 && (
-          <div className="filter-block">
+          <div className="filter-block longevity-filter">
             <div className="filter-block-header">
               <h4>Filter by Lifespan</h4>
             </div>
@@ -317,7 +325,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
                       setFilterType('longevity')
                     }}
                   >
-                    <span className="tag-name">⏳ {bracket}</span>
+                    <span className="tag-name">{bracket}</span>
                     <span className="tag-count">{count}</span>
                   </button>
                 )
@@ -327,7 +335,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
         )}
 
         {/* Filter by Region */}
-        <div className="filter-block">
+        <div className="filter-block region-filter">
           <div className="filter-block-header">
             <h4>Filter by Region</h4>
           </div>
@@ -344,7 +352,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
                     setFilterType('region')
                   }}
                 >
-                  <span className="tag-name">📍 {region}</span>
+                  <span className="tag-name">{region}</span>
                   <span className="tag-count">{count}</span>
                 </button>
               )
@@ -353,7 +361,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
         </div>
 
         {/* Filter by Generation */}
-        <div className="filter-block">
+        <div className="filter-block generation-filter">
           <div className="filter-block-header">
             <h4>Filter by Generation</h4>
           </div>
@@ -379,7 +387,7 @@ export default function HeritageConstellation({ ancestors, onSelectPerson }) {
         </div>
 
         {/* Filter by Era */}
-        <div className="filter-block">
+        <div className="filter-block era-filter">
           <div className="filter-block-header">
             <h4>Filter by Era</h4>
           </div>

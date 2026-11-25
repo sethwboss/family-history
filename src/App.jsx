@@ -1,5 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import Header from './components/Navigation/Header'
+import Footer from './components/Navigation/Footer'
+import AmbientBackdrop from './components/Common/AmbientBackdrop'
 import TabBar from './components/Navigation/TabBar'
 import ActivityChooser from './components/Navigation/ActivityChooser'
 import WelcomeHero from './components/Onboarding/WelcomeHero'
@@ -110,8 +112,9 @@ export default function App() {
 
   return (
     <div className="app-root">
+      <AmbientBackdrop />
       {/* Clean Minimalist Clickable Header */}
-      <Header onGoHome={handleGoHome} />
+      <Header onGoHome={handleGoHome} className="motion-header" />
 
       {/* Notification Toast */}
       {notification && (
@@ -230,29 +233,7 @@ export default function App() {
         onLoadSample={handleLoadSample}
       />
 
-      {/* Footer */}
-      <footer className="site-footer">
-        <div className="footer-inner">
-          <div className="footer-brand">
-            <div className="footer-logo">
-              <img className="footer-logo-mark" src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" />
-              <span>MemoryLink</span>
-            </div>
-            <p>Connecting you with the lives, traits, and milestones of your ancestors.</p>
-          </div>
-          <div className="footer-links">
-            <span>Private &amp; Secure &bull; All data processed in your browser</span>
-            <span>&bull;</span>
-            <button
-              type="button"
-              className="footer-link-btn"
-              onClick={() => setIsHelpModalOpen(true)}
-            >
-              Export Instructions &amp; Help
-            </button>
-          </div>
-        </div>
-      </footer>
+      <Footer className="motion-footer" onOpenHelp={() => setIsHelpModalOpen(true)} />
     </div>
   )
 }
