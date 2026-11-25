@@ -149,12 +149,12 @@ export default function AnimationTestPage() {
               <animate attributeName="y" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="282;160" keyTimes="0;1" />
             </rect>
             <ellipse className="time-glass-sand time-glass-mound" cx="150" cy="274" rx="0" ry="0" clipPath="url(#time-glass-bottom-clip)">
-              <animate attributeName="cy" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="274;208" keyTimes="0;1" />
+              <animate attributeName="cy" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="274;274" keyTimes="0;1" />
               <animate attributeName="rx" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="0;54" keyTimes="0;1" />
               <animate attributeName="ry" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="0;20" keyTimes="0;1" />
             </ellipse>
-            <path className="time-glass-stream" d="M150 158 V274">
-              <animate attributeName="d" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="M150 158 V274;M150 158 V212" keyTimes="0;1" />
+            <path className="time-glass-stream" d="M150 158 V164">
+              <animate attributeName="d" dur="14s" repeatCount="1" fill="freeze" calcMode="linear" values="M150 158 V164;M150 158 V274;M150 158 V274" keyTimes="0;0.02;1" />
               <animate attributeName="opacity" dur="14s" repeatCount="1" fill="freeze" values="1;1" keyTimes="0;1" />
             </path>
           </svg>
