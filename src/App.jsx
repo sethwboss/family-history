@@ -234,7 +234,10 @@ export default function App() {
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <span className="footer-logo">MemoryLink</span>
+            <div className="footer-logo">
+              <img className="footer-logo-mark" src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" />
+              <span>MemoryLink</span>
+            </div>
             <p>Connecting you with the lives, traits, and milestones of your ancestors.</p>
           </div>
           <div className="footer-links">

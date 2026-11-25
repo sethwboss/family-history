@@ -72,9 +72,9 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
         
         {/* Header */}
         <div className="welcome-header">
-          <h2>Load Your Family Tree</h2>
+          <h2>Upload Your Family Tree</h2>
           <p className="welcome-lead">
-            Upload your Ancestry <strong>.zip</strong> download or direct <strong>.ged</strong> file to explore your personalized matches and timelines.
+            Choose a <strong>.zip</strong> or <strong>.ged</strong> file from <a href="https://www.ancestry.com/family-tree/trees" target="_blank" rel="noopener noreferrer" className="guide-step-link">Ancestry</a> to get started.
           </p>
         </div>
 
@@ -114,8 +114,8 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                 <line x1="12" y1="3" x2="12" y2="15" />
               </svg>
             </span>
-            <h3>Drag &amp; Drop your <code>.zip</code> or <code>.ged</code> file here</h3>
-            <p>or click to browse from your computer</p>
+            <h3>Drop your file here</h3>
+            <p>or click to choose a file</p>
           </div>
         </div>
 
@@ -149,9 +149,15 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                   className={`guide-choice-btn ${activeGuideTab === 'familysearch' ? 'active' : ''}`}
                   onClick={() => setActiveGuideTab('familysearch')}
                 >
-                  FamilySearch (RootsMagic)
+                  FamilySearch
                 </button>
               </div>
+
+              {activeGuideTab === 'familysearch' && (
+                <div className="guide-disclaimer" role="note">
+                  This option takes more time and requires downloading extra software (RootsMagic).
+                </div>
+              )}
 
               <div className="guide-steps-list">
                 {activeGuideTab === 'ancestry' ? (
@@ -159,11 +165,31 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                     <div className="guide-step-row">
                       <span className="step-num">1</span>
                       <div className="step-content">
-                        <strong>Open your tree:</strong> Go directly to <a href="https://www.ancestry.com/family-tree/trees" target="_blank" rel="noopener noreferrer" className="guide-step-link">Ancestry Trees (ancestry.com/family-tree/trees) ↗</a>, open your tree, and click <em>Tree Settings → Export tree</em>.
+                        <strong>Open Tree settings:</strong> Go directly to <a href="https://www.ancestry.com/family-tree/trees" target="_blank" rel="noopener noreferrer" className="guide-step-link">Ancestry Trees ↗</a> and click <em>Tree settings</em> for the tree you want to export.
+                        <div className="guide-step-img-wrapper">
+                          <img
+                            src={`${import.meta.env.BASE_URL}ancestry-tree-settings.png`}
+                            alt="Ancestry tree list with the Tree settings link highlighted"
+                            className="guide-step-img"
+                          />
+                        </div>
                       </div>
                     </div>
                     <div className="guide-step-row">
                       <span className="step-num">2</span>
+                      <div className="step-content">
+                        <strong>Export your tree:</strong> On the Tree settings page, click <em>Export tree</em> to download your family tree file.
+                        <div className="guide-step-img-wrapper">
+                          <img
+                            src={`${import.meta.env.BASE_URL}ancestry-export-tree.png`}
+                            alt="Ancestry tree settings page with Export tree highlighted"
+                            className="guide-step-img"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="guide-step-row">
+                      <span className="step-num">3</span>
                       <div className="step-content">
                         <strong>Click "Download your GEDCOM file":</strong> Ancestry prepares your file and downloads a <code>.zip</code> file (like <code>Boss Family Tree.zip</code>).
                         <div className="guide-step-img-wrapper">
@@ -176,9 +202,9 @@ export default function WelcomeHero({ onFileLoaded, onLoadSample }) {
                       </div>
                     </div>
                     <div className="guide-step-row">
-                      <span className="step-num">3</span>
+                      <span className="step-num">4</span>
                       <div className="step-content">
-                        <strong>Drop it right here:</strong> You do <strong>NOT</strong> need to unzip it! Just drag the <code>.zip</code> file directly into the box above.
+                        <strong>Drop it into the box above:</strong> You do <strong>NOT</strong> need to unzip it! Just drag the <code>.zip</code> file directly into the box.
                       </div>
                     </div>
                   </>
